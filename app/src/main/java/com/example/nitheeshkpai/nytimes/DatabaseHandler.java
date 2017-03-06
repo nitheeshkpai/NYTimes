@@ -1,9 +1,5 @@
 package com.example.nitheeshkpai.nytimes;
 
-/**
- * Created by nitheeshkpai on 3/6/17.
- */
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -15,19 +11,20 @@ import java.util.List;
 
 /**
  * Created by nitheeshkpai on 2/21/17.
+ * Class that handles all DB stuff used in Save Article feature
  */
 
-public class DatabaseHandler extends SQLiteOpenHelper {
+class DatabaseHandler extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 1;
 
     // Database Name
     private static final String DATABASE_NAME = "NewsItemsManager";
 
-    // Contacts table name
+    // News articles table name
     private static final String TABLE_ITEMS = "newsItems";
 
-    // Contacts Table Columns names
+    // News articles Table Columns names
     private static final String KEY_ID = "id";
     private static final String KEY_TITLE = "title";
     private static final String KEY_URL = "url";
@@ -88,7 +85,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 itemInfoList.add(itemInfo);
             } while (cursor.moveToNext());
         }
-
+        cursor.close();
         return itemInfoList;
     }
 

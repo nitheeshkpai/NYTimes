@@ -7,10 +7,10 @@ import java.util.ArrayList;
 /**
  * Created by nitheeshkpai on 3/3/17.
  */
-public class MediaInfo {
+class MediaInfo {
 
     @SerializedName("media-metadata")
-    private ArrayList<ImageURL> imagesList;
+    private final ArrayList<ImageURL> imagesList;
 
     public MediaInfo(ArrayList<ImageURL> imageURLList) {
         imagesList = imageURLList;

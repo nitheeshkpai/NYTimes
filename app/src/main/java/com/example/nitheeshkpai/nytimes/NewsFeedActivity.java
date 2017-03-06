@@ -39,9 +39,6 @@ import java.util.List;
 
 public class NewsFeedActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener, NavigationView.OnNavigationItemSelectedListener {
 
-    private static String REQUEST_URL = "https://api.nytimes.com/svc/mostpopular/v2/mostviewed/all-sections/1.json?";
-    private static String API_KEY = "api_key=6e766524b9f94c7b9910b09198659fe9";
-
     private final String NEWS_JSON_KEY = "results";
 
     private SwipeRefreshLayout swipeRefreshLayout;
@@ -49,15 +46,22 @@ public class NewsFeedActivity extends AppCompatActivity implements SwipeRefreshL
     private Gson gson;
 
     private RecyclerView recyclerView;
-    private NewsItemsAdapter adapter;
     private LinearLayoutManager mLayoutManager;
     private List<NewsItemInfo> newsItemsInfoList = new ArrayList<>();
-    private List<NewsItemInfo> displayList = new ArrayList<>();
+    private final List<NewsItemInfo> displayList = new ArrayList<>();
 
     private int previousTotal = 0;
     private boolean loading = true;
-    private int visibleThreshold = 5;
-    int firstVisibleItem, visibleItemCount, totalItemCount;
+    private final int visibleThreshold = 5;
+    @SuppressWarnings("WeakerAccess")
+    private
+    int firstVisibleItem;
+    @SuppressWarnings("WeakerAccess")
+    private
+    int visibleItemCount;
+    @SuppressWarnings("WeakerAccess")
+    private
+    int totalItemCount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +75,7 @@ public class NewsFeedActivity extends AppCompatActivity implements SwipeRefreshL
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        //noinspection deprecation
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
@@ -90,21 +95,10 @@ public class NewsFeedActivity extends AppCompatActivity implements SwipeRefreshL
         });
     }
 
-    @Override
-    protected void onPostResume() {
-        super.onPostResume();
-    }
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-    }
-
     private void init() {
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         mLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(mLayoutManager);
-
     }
 
     @Override
@@ -144,6 +138,8 @@ public class NewsFeedActivity extends AppCompatActivity implements SwipeRefreshL
 
         RequestQueue queue = Volley.newRequestQueue(this);
 
+        String REQUEST_URL = "https://api.nytimes.com/svc/mostpopular/v2/mostviewed/all-sections/1.json?";
+        String API_KEY = "api_key=6e766524b9f94c7b9910b09198659fe9";
         StringRequest stringRequest = new StringRequest(Request.Method.GET, REQUEST_URL + API_KEY,
                 new Response.Listener<String>() {
                     @Override
@@ -200,7 +196,7 @@ public class NewsFeedActivity extends AppCompatActivity implements SwipeRefreshL
 
     private void updateUI() {
         loadForDisplay();
-        adapter = new NewsItemsAdapter(this, displayList);
+        NewsItemsAdapter adapter = new NewsItemsAdapter(this, displayList);
         recyclerView.setAdapter(adapter);
     }
 

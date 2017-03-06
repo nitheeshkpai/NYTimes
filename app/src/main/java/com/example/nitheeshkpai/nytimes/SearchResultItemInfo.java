@@ -7,7 +7,8 @@ import java.util.ArrayList;
 /**
  * Created by nitheeshkpai on 3/4/17.
  */
-public class SearchResultItemInfo {
+@SuppressWarnings("unused")
+class SearchResultItemInfo {
 
     @SerializedName("headline")
     private Headline headline;
@@ -23,8 +24,6 @@ public class SearchResultItemInfo {
 
     @SerializedName("pub_date")
     private String publishedDate;
-
-    private static String IMAGE_SOURCE = "http://www.nytimes.com/";
 
 
     public String getTitle() {
@@ -49,7 +48,8 @@ public class SearchResultItemInfo {
         }
         ArrayList<ImageURL> urlWithSourceList = new ArrayList<>();
         for(ImageURL temp : imagesInfoList){
-            urlWithSourceList.add(new ImageURL(IMAGE_SOURCE+temp.getURL()));
+            String IMAGE_SOURCE = "http://www.nytimes.com/";
+            urlWithSourceList.add(new ImageURL(IMAGE_SOURCE +temp.getURL()));
         }
         return urlWithSourceList;
     }

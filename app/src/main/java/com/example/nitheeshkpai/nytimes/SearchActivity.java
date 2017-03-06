@@ -38,16 +38,11 @@ public class SearchActivity extends AppCompatActivity {
     private static final String DOCS_JSON_KEY = "docs";
     private static final String RESPONSE_JSON_KEY = "response";
 
-    private static String REQUEST_URL = "https://api.nytimes.com/svc/search/v2/articlesearch.json?";
-    private static String API_KEY = "api_key=6e766524b9f94c7b9910b09198659fe9";
-
     private Gson gson;
 
     private List<SearchResultItemInfo> searchResultItemsInfoList = new ArrayList<>();
-    private List<NewsItemInfo> displayList = new ArrayList<>();
+    private final List<NewsItemInfo> displayList = new ArrayList<>();
 
-    private EditText searchText;
-    private RecyclerView recyclerView;
     private NewsItemsAdapter adapter;
 
     @Override
@@ -57,13 +52,15 @@ public class SearchActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
 
         initViews();
     }
 
     private void initViews() {
-        searchText = (EditText) findViewById(R.id.search_text);
+        EditText searchText = (EditText) findViewById(R.id.search_text);
         searchText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -82,7 +79,7 @@ public class SearchActivity extends AppCompatActivity {
             }
         });
 
-        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         final LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(mLayoutManager);
 
@@ -102,6 +99,8 @@ public class SearchActivity extends AppCompatActivity {
 
         RequestQueue queue = Volley.newRequestQueue(this);
 
+        String REQUEST_URL = "https://api.nytimes.com/svc/search/v2/articlesearch.json?";
+        String API_KEY = "api_key=6e766524b9f94c7b9910b09198659fe9";
         StringRequest stringRequest = new StringRequest(Request.Method.GET, REQUEST_URL + API_KEY + "&q=" + query,
                 new Response.Listener<String>() {
                     @Override
@@ -118,13 +117,13 @@ public class SearchActivity extends AppCompatActivity {
                         }.getType();
 
                         try {
-                            searchResultItemsInfoList = gson.fromJson(searchResultItemsJSONArray.toString(), type);
+                            searchResultItemsInfoList = gson.fromJson(searchResultItemsJSONArray != null ? searchResultItemsJSONArray.toString() : null, type);
                         } catch (JsonSyntaxException e) {
                             Toast.makeText(SearchActivity.this, "Bad data from Server!", Toast.LENGTH_SHORT).show();
                             e.printStackTrace();
                         }
 
-                        for (SearchResultItemInfo temp : searchResultItemsInfoList) {
+                        for (SearchResultItemInfo temp : searchResultItemsInfoList != null ? searchResultItemsInfoList : null) {
                             displayList.add(new NewsItemInfo(temp));
                         }
                         adapter.notifyDataSetChanged();

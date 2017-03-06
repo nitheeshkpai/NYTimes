@@ -1,8 +1,6 @@
 package com.example.nitheeshkpai.nytimes;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -21,9 +19,8 @@ import java.util.List;
  */
 public class SavedNewsItemsActivity extends AppCompatActivity {
 
-    DatabaseHandler dBHandler;
+    private DatabaseHandler dBHandler;
 
-    private RecyclerView recyclerView;
     private NewsItemsAdapter adapter;
     private List<NewsItemInfo> newsItemsList = new ArrayList<>();
 
@@ -35,7 +32,9 @@ public class SavedNewsItemsActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
 
         dBHandler = new DatabaseHandler(this);
         newsItemsList = dBHandler.getAllItems();
@@ -49,7 +48,7 @@ public class SavedNewsItemsActivity extends AppCompatActivity {
             dialog.show();
         }
 
-        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setAdapter(adapter);

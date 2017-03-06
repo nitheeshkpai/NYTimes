@@ -7,7 +7,6 @@
     <string name="dialog_message_no_network">Something seems to be wrong with the network</string>
     <string name="no_network">Network error</string>
     <string name="search_title">Search</string>
-    <string name="search_hint">Enter keyword</string>
     <string name="enter_keyword">Enter search keyword</string>
 
     <string name="default_date"> </string>
@@ -15,10 +14,13 @@
     <string name="menu_save">Save for later</string>
     <string name="saved_articles">Saved Articles</string>
 
-    <string name="removed_bookmark">Removed from Saved Items</string>
-    <string name="added_bookmark">Added to Saved Items</string>
+    <string name="removed_bookmark">Removed from Saved Articles</string>
+    <string name="added_bookmark">Added to Saved Articles</string>
     <string name="dialog_message_no_bookmarks">No items have been saved so far</string>
     <string name="no_bookmarks">No News Items</string>
     <string name="delete">Delete</string>
     <string name="app_full_name">The New York Times</string>
+    <string name="card_view">Card View</string>
+    <string name="more_options">More Options</string>
+    <string name="delete_all">Delete all</string>
 </resources>

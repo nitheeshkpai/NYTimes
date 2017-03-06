@@ -5,7 +5,8 @@ import com.google.gson.annotations.SerializedName;
 /**
  * Created by nitheeshkpai on 3/4/17.
  */
-public class Headline {
+@SuppressWarnings("unused")
+class Headline {
 
     @SerializedName("main")
     private String title;

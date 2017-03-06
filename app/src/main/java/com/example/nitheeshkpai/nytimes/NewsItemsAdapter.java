@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -18,16 +19,17 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by nitheeshkpai on 3/3/17.
  */
 public class NewsItemsAdapter extends RecyclerView.Adapter<NewsItemsAdapter.MyViewHolder> {
 
-    private Context mContext;
-    private List<NewsItemInfo> newsItemsInfoList;
+    private final Context mContext;
+    private final List<NewsItemInfo> newsItemsInfoList;
 
-    private DatabaseHandler dBHandler;
+    private final DatabaseHandler dBHandler;
 
     public NewsItemsAdapter(Context context, List<NewsItemInfo> newsItemsInfoList) {
         this.mContext = context;
@@ -37,11 +39,11 @@ public class NewsItemsAdapter extends RecyclerView.Adapter<NewsItemsAdapter.MyVi
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public NewsItemInfo currentItem;
-        public TextView title;
-        public TextView date;
-        public TextView body;
-        public ImageView thumbnail;
-        public ImageView more;
+        public final TextView title;
+        public final TextView date;
+        public final TextView body;
+        public final ImageView thumbnail;
+        public final ImageView more;
 
         public MyViewHolder(View view) {
             super(view);
@@ -101,6 +103,7 @@ public class NewsItemsAdapter extends RecyclerView.Adapter<NewsItemsAdapter.MyVi
 
     private void saveNewsItem(NewsItemInfo currentItem) {
         dBHandler.addItem(currentItem);
+        Toast.makeText(mContext, mContext.getResources().getString(R.string.added_bookmark), Toast.LENGTH_SHORT).show();
     }
 
     private void shareNewsItem(NewsItemInfo currentItem) {
@@ -127,6 +130,7 @@ public class NewsItemsAdapter extends RecyclerView.Adapter<NewsItemsAdapter.MyVi
         holder.date.setText(formatDate(holder.currentItem.getDate()));
         holder.body.setText(holder.currentItem.getBody());
 
+        //noinspection deprecation
         Picasso.with(mContext).load(holder.currentItem.getImageURL()).placeholder(mContext.getResources().getDrawable(R.mipmap.ny_times_default_image)).into(holder.thumbnail);
     }
 
@@ -135,7 +139,7 @@ public class NewsItemsAdapter extends RecyclerView.Adapter<NewsItemsAdapter.MyVi
         if(dateString == null) {
             return mContext.getResources().getString(R.string.default_date);
         }
-        SimpleDateFormat form = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat form = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
         Date date = null;
         try {
             date = form.parse(dateString);
@@ -144,8 +148,8 @@ public class NewsItemsAdapter extends RecyclerView.Adapter<NewsItemsAdapter.MyVi
             e.printStackTrace();
         }
 
-        SimpleDateFormat postFormater = new SimpleDateFormat("dd MMM, yyyy");
-        return postFormater.format(date);
+        SimpleDateFormat postFormatter = new SimpleDateFormat("dd MMM, yyyy", Locale.US);
+        return postFormatter.format(date);
     }
 
     @Override
