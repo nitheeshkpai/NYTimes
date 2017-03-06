@@ -74,6 +74,7 @@ public class SavedNewsItemsActivity extends AppCompatActivity {
                         adapter.deleteNewsItem(newsItemsList.get(viewHolder.getAdapterPosition()));
                         adapter.notifyDataSetChanged();
                         Toast.makeText(SavedNewsItemsActivity.this, SavedNewsItemsActivity.this.getResources().getString(R.string.removed_bookmark), Toast.LENGTH_SHORT).show();
+                        invalidateOptionsMenu();
                         break;
                 }
             }
@@ -88,11 +89,17 @@ public class SavedNewsItemsActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.saved_items_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
         if (newsItemsList.isEmpty()) {
             menu.findItem(R.id.remove_all).setEnabled(false);
         }
-        return super.onCreateOptionsMenu(menu);
+        return super.onPrepareOptionsMenu(menu);
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -102,7 +109,7 @@ public class SavedNewsItemsActivity extends AppCompatActivity {
                 newsItemsList.clear();
                 adapter.notifyDataSetChanged();
                 Toast.makeText(this, this.getResources().getString(R.string.removed_bookmark), Toast.LENGTH_SHORT).show();
-                item.setEnabled(false);
+                invalidateOptionsMenu();
                 break;
         }
         return super.onOptionsItemSelected(item);

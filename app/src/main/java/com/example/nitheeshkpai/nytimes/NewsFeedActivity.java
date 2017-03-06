@@ -148,9 +148,7 @@ public class NewsFeedActivity extends AppCompatActivity implements SwipeRefreshL
                 }
                 if (!loading && (totalItemCount - visibleItemCount)
                         <= (firstVisibleItem + visibleThreshold)) {
-
                     loadForDisplay();
-
                     loading = true;
                 }
             }
