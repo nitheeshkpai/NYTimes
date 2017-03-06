@@ -25,6 +25,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.nitheeshkpai.nytimes.info.NewsItemInfo;
+import com.example.nitheeshkpai.nytimes.utils.Constants;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
@@ -139,9 +140,9 @@ public class NewsFeedActivity extends AppCompatActivity implements SwipeRefreshL
 
         RequestQueue queue = Volley.newRequestQueue(this);
 
-        String REQUEST_URL = "https://api.nytimes.com/svc/mostpopular/v2/mostviewed/all-sections/1.json?";
-        String API_KEY = "api_key=6e766524b9f94c7b9910b09198659fe9";
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, REQUEST_URL + API_KEY,
+
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.MOST_VIEWED_REQUEST_URL + Constants.USER_API_KEY,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
