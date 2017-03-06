@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">NYTimes</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="dialog_message_no_network">Something seems to be wrong with the network</string>
+    <string name="no_network">Network error</string>
+    <string name="search_title">Search</string>
+    <string name="search_hint">Enter keyword</string>
+    <string name="enter_keyword">Enter search keyword</string>
+
+    <string name="default_date"> </string>
+    <string name="menu_share">Share</string>
+    <string name="menu_save">Save for later</string>
+    <string name="saved_articles">Saved Articles</string>
+</resources>
