@@ -50,6 +50,7 @@ public class NewsFeedActivity extends AppCompatActivity implements SwipeRefreshL
 
     private RecyclerView recyclerView;
     private NewsItemsAdapter adapter;
+    private LinearLayoutManager mLayoutManager;
     private List<NewsItemInfo> newsItemsInfoList = new ArrayList<>();
     private List<NewsItemInfo> displayList = new ArrayList<>();
 
@@ -101,9 +102,14 @@ public class NewsFeedActivity extends AppCompatActivity implements SwipeRefreshL
 
     private void init() {
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-        final LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
+        mLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(mLayoutManager);
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
 
             @Override
@@ -129,7 +135,6 @@ public class NewsFeedActivity extends AppCompatActivity implements SwipeRefreshL
                 }
             }
         });
-
     }
 
     private void makeNetworkRequest() {
@@ -227,13 +232,19 @@ public class NewsFeedActivity extends AppCompatActivity implements SwipeRefreshL
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.options_menu, menu);
-
         return true;
     }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        return false;
+        switch (item.getItemId()) {
+            case R.id.saved_items :
+                Intent intent = new Intent(this, SavedNewsItemsActivity.class);
+                startActivity(intent);
+        }
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
     }
 
     @Override

@@ -29,9 +29,12 @@ public class NewsItemsAdapter extends RecyclerView.Adapter<NewsItemsAdapter.MyVi
     private Context mContext;
     private List<NewsItemInfo> newsItemsInfoList;
 
+    private DatabaseHandler dBHandler;
+
     public NewsItemsAdapter(Context context, List<NewsItemInfo> newsItemsInfoList) {
         this.mContext = context;
         this.newsItemsInfoList = newsItemsInfoList;
+        dBHandler = new DatabaseHandler(mContext);
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
@@ -65,6 +68,11 @@ public class NewsItemsAdapter extends RecyclerView.Adapter<NewsItemsAdapter.MyVi
                     PopupMenu popup = new PopupMenu(mContext,v);
                     MenuInflater inflater = popup.getMenuInflater();
                     inflater.inflate(R.menu.popup_menu, popup.getMenu());
+
+                    if(mContext instanceof SavedNewsItemsActivity) {
+                        popup.getMenu().findItem(R.id.save).setVisible(false);
+                        popup.getMenu().findItem(R.id.delete).setVisible(true);
+                    }
                     popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                         @Override
                         public boolean onMenuItemClick(MenuItem item) {
@@ -73,8 +81,10 @@ public class NewsItemsAdapter extends RecyclerView.Adapter<NewsItemsAdapter.MyVi
                                     shareNewsItem(currentItem);
                                     break;
                                 case R.id.save :
-                                    Toast.makeText(mContext,"Save",Toast.LENGTH_SHORT).show();
+                                    saveNewsItem(currentItem);
                                     break;
+                                case R.id.delete :
+                                    deleteNewsItem(currentItem);
                             }
                             return true;
                         }
@@ -83,6 +93,16 @@ public class NewsItemsAdapter extends RecyclerView.Adapter<NewsItemsAdapter.MyVi
                 }
             });
         }
+    }
+
+    private void deleteNewsItem(NewsItemInfo currentItem) {
+        dBHandler.deleteItem(currentItem);
+        newsItemsInfoList.remove(currentItem);
+        notifyDataSetChanged();
+    }
+
+    private void saveNewsItem(NewsItemInfo currentItem) {
+        dBHandler.addItem(currentItem);
     }
 
     private void shareNewsItem(NewsItemInfo currentItem) {

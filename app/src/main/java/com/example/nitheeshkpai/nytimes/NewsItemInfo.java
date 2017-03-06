@@ -61,4 +61,28 @@ public class NewsItemInfo {
     public String getLink() {
         return link;
     }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
+    }
+
+    public void setBody(String body) {
+        this.body = body;
+    }
+
+    public void setDate(String date) {
+        this.publishedDate = date;
+    }
+
+    public void setImageURL(String imageURL) {
+        ArrayList<ImageURL> imageList = new ArrayList<>();
+        imageList.add(new ImageURL(imageURL));
+        this.media = new ArrayList<>();
+        this.media.add(0, new MediaInfo(imageList));
+    }
+
 }

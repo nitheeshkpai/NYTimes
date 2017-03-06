@@ -23,13 +23,18 @@
 
         <activity
             android:name=".WebViewActivity"
-            android:label="Details"></activity>
+            android:label="Details"
+            android:launchMode="singleTop"></activity>
 
         <activity
             android:name=".SearchActivity"
             android:label="Search"
-            android:parentActivityName=".NewsFeedActivity">
-        </activity>
+            android:parentActivityName=".NewsFeedActivity"></activity>
+
+        <activity
+            android:name=".SavedNewsItemsActivity"
+            android:label="Saved Articles"
+            android:parentActivityName=".NewsFeedActivity"></activity>
 
     </application>
 

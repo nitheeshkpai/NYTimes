@@ -14,4 +14,10 @@
     <string name="menu_share">Share</string>
     <string name="menu_save">Save for later</string>
     <string name="saved_articles">Saved Articles</string>
+
+    <string name="removed_bookmark">Removed from Saved Items</string>
+    <string name="added_bookmark">Added to Saved Items</string>
+    <string name="dialog_message_no_bookmarks">No items have been saved so far</string>
+    <string name="no_bookmarks">No News Items</string>
+    <string name="delete">Delete</string>
 </resources>

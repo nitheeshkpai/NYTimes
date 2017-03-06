@@ -14,4 +14,5 @@
     <dimen name="logo_size">96dp</dimen>
     <dimen name="nav_title_size">22sp</dimen>
     <dimen name="nav_title_margin">16dp</dimen>
+    <dimen name="card_bottom_margin">8dp</dimen>
 </resources>
