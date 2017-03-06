@@ -105,6 +105,10 @@ public class NewsItemsAdapter extends RecyclerView.Adapter<NewsItemsAdapter.MyVi
     }
 
     private void saveNewsItem(NewsItemInfo currentItem) {
+        if (isAlreadySaved(currentItem)) {
+            Toast.makeText(mContext, mContext.getResources().getString(R.string.already_bookmarked), Toast.LENGTH_SHORT).show();
+            return;
+        }
         dBHandler.addItem(currentItem);
         Toast.makeText(mContext, mContext.getResources().getString(R.string.added_bookmark), Toast.LENGTH_SHORT).show();
     }
@@ -116,6 +120,17 @@ public class NewsItemsAdapter extends RecyclerView.Adapter<NewsItemsAdapter.MyVi
         sendIntent.setType("text/plain");
         sendIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         mContext.startActivity(sendIntent);
+    }
+
+    private boolean isAlreadySaved(NewsItemInfo item) {
+        List<NewsItemInfo> dbList = dBHandler.getAllItems();
+
+        for (NewsItemInfo i : dbList) {
+            if (i.getLink().equals(item.getLink())) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override

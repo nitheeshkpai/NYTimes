@@ -16,6 +16,7 @@
 
     <string name="removed_bookmark">Removed from Saved Articles</string>
     <string name="added_bookmark">Added to Saved Articles</string>
+    <string name="already_bookmarked">Article is already saved</string>
     <string name="dialog_message_no_bookmarks">No items have been saved so far</string>
     <string name="no_bookmarks">No News Items</string>
     <string name="delete">Delete</string>
