@@ -22,6 +22,7 @@
                 android:id="@+id/thumbnail"
                 android:layout_width="@dimen/card_thumbnail_side"
                 android:layout_height="@dimen/card_thumbnail_side"
+                android:layout_marginStart="@dimen/card_margin"
                 android:layout_marginTop="@dimen/card_margin" />
 
             <LinearLayout

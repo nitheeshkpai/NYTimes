@@ -41,7 +41,7 @@ public class SavedNewsItemsActivity extends AppCompatActivity {
         newsItemsList = dBHandler.getAllItems();
         adapter = new NewsItemsAdapter(this, newsItemsList);
 
-        if(newsItemsList.isEmpty()) {
+        if (newsItemsList.isEmpty()) {
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
             alertDialogBuilder.setMessage(this.getResources().getString(R.string.dialog_message_no_bookmarks))
                     .setTitle(this.getResources().getString(R.string.no_bookmarks));
@@ -70,6 +70,7 @@ public class SavedNewsItemsActivity extends AppCompatActivity {
                 newsItemsList.clear();
                 adapter.notifyDataSetChanged();
                 Toast.makeText(this, this.getResources().getString(R.string.removed_bookmark), Toast.LENGTH_SHORT).show();
+                item.setEnabled(false);
                 break;
         }
         return super.onOptionsItemSelected(item);
