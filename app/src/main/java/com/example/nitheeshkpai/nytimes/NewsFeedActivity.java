@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -49,6 +50,7 @@ public class NewsFeedActivity extends AppCompatActivity implements SwipeRefreshL
 
     private RecyclerView recyclerView;
     private LinearLayoutManager mLayoutManager;
+    private NewsItemsAdapter adapter;
     private List<NewsItemInfo> newsItemsInfoList = new ArrayList<>();
     private final List<NewsItemInfo> displayList = new ArrayList<>();
 
@@ -84,7 +86,7 @@ public class NewsFeedActivity extends AppCompatActivity implements SwipeRefreshL
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        init();
+        initView();
 
         swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh);
         swipeRefreshLayout.setOnRefreshListener(this);
@@ -97,10 +99,32 @@ public class NewsFeedActivity extends AppCompatActivity implements SwipeRefreshL
         });
     }
 
-    private void init() {
+    private void initView() {
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         mLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(mLayoutManager);
+
+        ItemTouchHelper.SimpleCallback swipeActions = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
+            @Override
+            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+                return false;
+            }
+            @Override
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {
+                switch (swipeDir) {
+                    case ItemTouchHelper.LEFT :
+                        if(adapter.saveNewsItem(displayList.get(viewHolder.getAdapterPosition()))){
+                            displayList.remove(viewHolder.getAdapterPosition());
+                        }
+                        adapter.notifyDataSetChanged();
+                        break;
+                }
+            }
+        };
+
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(swipeActions);
+        itemTouchHelper.attachToRecyclerView(recyclerView);
+        Toast.makeText(this, this.getResources().getString(R.string.swipe_left_to_bookmark), Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -198,7 +222,7 @@ public class NewsFeedActivity extends AppCompatActivity implements SwipeRefreshL
 
     private void updateUI() {
         loadForDisplay();
-        NewsItemsAdapter adapter = new NewsItemsAdapter(this, displayList);
+        adapter = new NewsItemsAdapter(this, displayList);
         recyclerView.setAdapter(adapter);
     }
 

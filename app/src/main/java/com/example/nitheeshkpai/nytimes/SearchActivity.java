@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.EditText;
@@ -60,10 +61,10 @@ public class SearchActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
-        initViews();
+        initView();
     }
 
-    private void initViews() {
+    private void initView() {
         EditText searchText = (EditText) findViewById(R.id.search_text);
         searchText.addTextChangedListener(new TextWatcher() {
             @Override
@@ -89,6 +90,28 @@ public class SearchActivity extends AppCompatActivity {
 
         adapter = new NewsItemsAdapter(SearchActivity.this, displayList);
         recyclerView.setAdapter(adapter);
+
+        ItemTouchHelper.SimpleCallback swipeActions = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
+            @Override
+            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+                return false;
+            }
+            @Override
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {
+                switch (swipeDir) {
+                    case ItemTouchHelper.LEFT :
+                        if(adapter.saveNewsItem(displayList.get(viewHolder.getAdapterPosition()))){
+                            displayList.remove(viewHolder.getAdapterPosition());
+                        }
+                        adapter.notifyDataSetChanged();
+                        break;
+                }
+            }
+        };
+
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(swipeActions);
+        itemTouchHelper.attachToRecyclerView(recyclerView);
+        Toast.makeText(this, this.getResources().getString(R.string.swipe_left_to_bookmark), Toast.LENGTH_SHORT).show();
     }
 
     private void runWebSearch(final String query) {

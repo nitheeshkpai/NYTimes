@@ -2,11 +2,8 @@ package com.example.nitheeshkpai.nytimes;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -46,7 +43,7 @@ public class NewsItemsAdapter extends RecyclerView.Adapter<NewsItemsAdapter.MyVi
         public final TextView date;
         public final TextView body;
         public final ImageView thumbnail;
-        public final ImageView more;
+        public final ImageView share;
 
         public MyViewHolder(View view) {
             super(view);
@@ -54,7 +51,7 @@ public class NewsItemsAdapter extends RecyclerView.Adapter<NewsItemsAdapter.MyVi
             date = (TextView) view.findViewById(R.id.date);
             body = (TextView) view.findViewById(R.id.body);
             thumbnail = (ImageView) view.findViewById(R.id.thumbnail);
-            more = (ImageView) view.findViewById(R.id.more);
+            share = (ImageView) view.findViewById(R.id.share);
 
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -65,52 +62,29 @@ public class NewsItemsAdapter extends RecyclerView.Adapter<NewsItemsAdapter.MyVi
                 }
             });
 
-            more.setOnClickListener(new View.OnClickListener() {
+            share.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    PopupMenu popup = new PopupMenu(mContext, v);
-                    MenuInflater inflater = popup.getMenuInflater();
-                    inflater.inflate(R.menu.card_overflow_popup_menu, popup.getMenu());
-
-                    if (mContext instanceof SavedNewsItemsActivity) {
-                        popup.getMenu().findItem(R.id.save).setVisible(false);
-                        popup.getMenu().findItem(R.id.delete).setVisible(true);
-                    }
-                    popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                        @Override
-                        public boolean onMenuItemClick(MenuItem item) {
-                            switch (item.getItemId()) {
-                                case R.id.share:
-                                    shareNewsItem(currentItem);
-                                    break;
-                                case R.id.save:
-                                    saveNewsItem(currentItem);
-                                    break;
-                                case R.id.delete:
-                                    deleteNewsItem(currentItem);
-                            }
-                            return true;
-                        }
-                    });
-                    popup.show();
+                    shareNewsItem(currentItem);
                 }
             });
         }
     }
 
-    private void deleteNewsItem(NewsItemInfo currentItem) {
+    public void deleteNewsItem(NewsItemInfo currentItem) {
         dBHandler.deleteItem(currentItem);
         newsItemsInfoList.remove(currentItem);
         notifyDataSetChanged();
     }
 
-    private void saveNewsItem(NewsItemInfo currentItem) {
+    public boolean saveNewsItem(NewsItemInfo currentItem) {
         if (isAlreadySaved(currentItem)) {
             Toast.makeText(mContext, mContext.getResources().getString(R.string.already_bookmarked), Toast.LENGTH_SHORT).show();
-            return;
+            return false;
         }
         dBHandler.addItem(currentItem);
         Toast.makeText(mContext, mContext.getResources().getString(R.string.added_bookmark), Toast.LENGTH_SHORT).show();
+        return true;
     }
 
     private void shareNewsItem(NewsItemInfo currentItem) {

@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -52,10 +53,35 @@ public class SavedNewsItemsActivity extends AppCompatActivity {
             dialog.show();
         }
 
+        initView();
+    }
+
+    private void initView() {
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setAdapter(adapter);
+
+        ItemTouchHelper.SimpleCallback swipeActions = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+                return false;
+            }
+            @Override
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {
+                switch (swipeDir) {
+                    case ItemTouchHelper.RIGHT :
+                        adapter.deleteNewsItem(newsItemsList.get(viewHolder.getAdapterPosition()));
+                        adapter.notifyDataSetChanged();
+                        Toast.makeText(SavedNewsItemsActivity.this, SavedNewsItemsActivity.this.getResources().getString(R.string.removed_bookmark), Toast.LENGTH_SHORT).show();
+                        break;
+                }
+            }
+        };
+
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(swipeActions);
+        itemTouchHelper.attachToRecyclerView(recyclerView);
+        Toast.makeText(this, this.getResources().getString(R.string.swipe_right_to_delete), Toast.LENGTH_SHORT).show();
     }
 
     @Override
