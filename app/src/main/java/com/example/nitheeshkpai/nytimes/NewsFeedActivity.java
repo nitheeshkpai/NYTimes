@@ -58,14 +58,11 @@ public class NewsFeedActivity extends AppCompatActivity implements SwipeRefreshL
     private boolean loading = true;
     private final int visibleThreshold = 5;
     @SuppressWarnings("WeakerAccess")
-    private
-    int firstVisibleItem;
+    private int firstVisibleItem;
     @SuppressWarnings("WeakerAccess")
-    private
-    int visibleItemCount;
+    private int visibleItemCount;
     @SuppressWarnings("WeakerAccess")
-    private
-    int totalItemCount;
+    private int totalItemCount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,16 +101,20 @@ public class NewsFeedActivity extends AppCompatActivity implements SwipeRefreshL
         mLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(mLayoutManager);
 
+        adapter = new NewsItemsAdapter(this, displayList);
+        recyclerView.setAdapter(adapter);
+
         ItemTouchHelper.SimpleCallback swipeActions = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
             @Override
             public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
                 return false;
             }
+
             @Override
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {
                 switch (swipeDir) {
-                    case ItemTouchHelper.LEFT :
-                        if(adapter.saveNewsItem(displayList.get(viewHolder.getAdapterPosition()))){
+                    case ItemTouchHelper.LEFT:
+                        if (adapter.saveNewsItem(displayList.get(viewHolder.getAdapterPosition()))) {
                             displayList.remove(viewHolder.getAdapterPosition());
                         }
                         adapter.notifyDataSetChanged();
@@ -148,7 +149,7 @@ public class NewsFeedActivity extends AppCompatActivity implements SwipeRefreshL
                 }
                 if (!loading && (totalItemCount - visibleItemCount)
                         <= (firstVisibleItem + visibleThreshold)) {
-                    loadForDisplay();
+                    updateUI();
                     loading = true;
                 }
             }
@@ -161,8 +162,6 @@ public class NewsFeedActivity extends AppCompatActivity implements SwipeRefreshL
         gson = gsonBuilder.create();
 
         RequestQueue queue = Volley.newRequestQueue(this);
-
-
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.MOST_VIEWED_REQUEST_URL + Constants.USER_API_KEY,
                 new Response.Listener<String>() {
@@ -219,18 +218,13 @@ public class NewsFeedActivity extends AppCompatActivity implements SwipeRefreshL
     }
 
     private void updateUI() {
-        loadForDisplay();
-        adapter = new NewsItemsAdapter(this, displayList);
-        recyclerView.setAdapter(adapter);
-    }
-
-    private void loadForDisplay() {
         for (int i = 0; i < 10; i++) {
             if (!newsItemsInfoList.isEmpty()) {
                 displayList.add(newsItemsInfoList.get(0));
                 newsItemsInfoList.remove(0);
             }
         }
+        adapter.notifyDataSetChanged();
     }
 
     @Override
