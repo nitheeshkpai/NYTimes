@@ -13,6 +13,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.nitheeshkpai.nytimes.info.NewsItemInfo;
+import com.example.nitheeshkpai.nytimes.utils.DatabaseHandler;
 import com.squareup.picasso.Picasso;
 
 import java.text.ParseException;
@@ -23,6 +25,7 @@ import java.util.Locale;
 
 /**
  * Created by nitheeshkpai on 3/3/17.
+ * Recycler View adapter that handles the cardView in multiple places in the application
  */
 public class NewsItemsAdapter extends RecyclerView.Adapter<NewsItemsAdapter.MyViewHolder> {
 
@@ -57,7 +60,7 @@ public class NewsItemsAdapter extends RecyclerView.Adapter<NewsItemsAdapter.MyVi
                 @Override
                 public void onClick(View v) {
                     final Intent intent = new Intent(mContext, WebViewActivity.class);
-                    intent.putExtra(WebViewActivity.LINK_EXTRA,currentItem.getLink());
+                    intent.putExtra(WebViewActivity.LINK_EXTRA, currentItem.getLink());
                     mContext.startActivity(intent);
                 }
             });
@@ -65,11 +68,11 @@ public class NewsItemsAdapter extends RecyclerView.Adapter<NewsItemsAdapter.MyVi
             more.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    PopupMenu popup = new PopupMenu(mContext,v);
+                    PopupMenu popup = new PopupMenu(mContext, v);
                     MenuInflater inflater = popup.getMenuInflater();
                     inflater.inflate(R.menu.card_overflow_popup_menu, popup.getMenu());
 
-                    if(mContext instanceof SavedNewsItemsActivity) {
+                    if (mContext instanceof SavedNewsItemsActivity) {
                         popup.getMenu().findItem(R.id.save).setVisible(false);
                         popup.getMenu().findItem(R.id.delete).setVisible(true);
                     }
@@ -77,13 +80,13 @@ public class NewsItemsAdapter extends RecyclerView.Adapter<NewsItemsAdapter.MyVi
                         @Override
                         public boolean onMenuItemClick(MenuItem item) {
                             switch (item.getItemId()) {
-                                case R.id.share :
+                                case R.id.share:
                                     shareNewsItem(currentItem);
                                     break;
-                                case R.id.save :
+                                case R.id.save:
                                     saveNewsItem(currentItem);
                                     break;
-                                case R.id.delete :
+                                case R.id.delete:
                                     deleteNewsItem(currentItem);
                             }
                             return true;
@@ -111,7 +114,7 @@ public class NewsItemsAdapter extends RecyclerView.Adapter<NewsItemsAdapter.MyVi
         sendIntent.setAction(Intent.ACTION_SEND);
         sendIntent.putExtra(Intent.EXTRA_TEXT, currentItem.getLink());
         sendIntent.setType("text/plain");
-        sendIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP );
+        sendIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         mContext.startActivity(sendIntent);
     }
 
@@ -136,7 +139,7 @@ public class NewsItemsAdapter extends RecyclerView.Adapter<NewsItemsAdapter.MyVi
 
     private String formatDate(String dateString) {
 
-        if(dateString == null) {
+        if (dateString == null) {
             return mContext.getResources().getString(R.string.default_date);
         }
         SimpleDateFormat form = new SimpleDateFormat("yyyy-MM-dd", Locale.US);

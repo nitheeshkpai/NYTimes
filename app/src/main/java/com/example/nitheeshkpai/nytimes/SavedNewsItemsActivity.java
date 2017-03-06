@@ -11,11 +11,15 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.example.nitheeshkpai.nytimes.info.NewsItemInfo;
+import com.example.nitheeshkpai.nytimes.utils.DatabaseHandler;
+
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by nitheeshkpai on 3/6/17.
+ * Activity to take care of archived news articles
  */
 public class SavedNewsItemsActivity extends AppCompatActivity {
 

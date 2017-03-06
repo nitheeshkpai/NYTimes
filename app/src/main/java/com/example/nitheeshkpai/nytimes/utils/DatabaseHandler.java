@@ -1,10 +1,12 @@
-package com.example.nitheeshkpai.nytimes;
+package com.example.nitheeshkpai.nytimes.utils;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import com.example.nitheeshkpai.nytimes.info.NewsItemInfo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +16,7 @@ import java.util.List;
  * Class that handles all DB stuff used in Save Article feature
  */
 
-class DatabaseHandler extends SQLiteOpenHelper {
+public class DatabaseHandler extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 1;
 

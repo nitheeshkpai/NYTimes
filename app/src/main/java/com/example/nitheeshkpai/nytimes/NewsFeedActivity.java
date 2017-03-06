@@ -24,6 +24,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.nitheeshkpai.nytimes.info.NewsItemInfo;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
@@ -159,7 +160,7 @@ public class NewsFeedActivity extends AppCompatActivity implements SwipeRefreshL
                         try {
                             newsItemsInfoList = gson.fromJson(syntaxCorrectedJSONString, type);
                         } catch (JsonSyntaxException e) {
-                            Toast.makeText(NewsFeedActivity.this,"Bad data from Server!",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(NewsFeedActivity.this, "Bad data from Server!", Toast.LENGTH_SHORT).show();
                             e.printStackTrace();
                         }
 
@@ -212,7 +213,7 @@ public class NewsFeedActivity extends AppCompatActivity implements SwipeRefreshL
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.search :
+            case R.id.search:
                 final Intent intent = new Intent(this, SearchActivity.class);
                 startActivity(intent);
         }
@@ -234,7 +235,7 @@ public class NewsFeedActivity extends AppCompatActivity implements SwipeRefreshL
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.saved_items :
+            case R.id.saved_items:
                 Intent intent = new Intent(this, SavedNewsItemsActivity.class);
                 startActivity(intent);
         }

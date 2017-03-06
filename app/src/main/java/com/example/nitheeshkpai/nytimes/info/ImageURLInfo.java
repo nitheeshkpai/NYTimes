@@ -1,12 +1,13 @@
-package com.example.nitheeshkpai.nytimes;
+package com.example.nitheeshkpai.nytimes.info;
 
 /**
  * Created by nitheeshkpai on 3/4/17.
+ * Info class to obtain url of image.
  */
-class ImageURL {
+class ImageURLInfo {
     private final String url;
 
-    public ImageURL(String urlWithSource) {
+    public ImageURLInfo(String urlWithSource) {
         this.url = urlWithSource;
     }
 

@@ -16,6 +16,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.nitheeshkpai.nytimes.info.NewsItemInfo;
+import com.example.nitheeshkpai.nytimes.info.SearchResultItemInfo;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
@@ -31,6 +33,7 @@ import java.util.List;
 
 /**
  * Created by nitheeshkpai on 3/4/17.
+ * Activity that runs the article search
  */
 
 public class SearchActivity extends AppCompatActivity {

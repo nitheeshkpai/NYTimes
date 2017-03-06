@@ -1,4 +1,4 @@
-package com.example.nitheeshkpai.nytimes;
+package com.example.nitheeshkpai.nytimes.info;
 
 import android.support.annotation.Nullable;
 
@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 /**
  * Created by nitheeshkpai on 3/3/17.
+ * Main info class used to convert News article JSON response into objects
  */
 public class NewsItemInfo {
 
@@ -79,8 +80,8 @@ public class NewsItemInfo {
     }
 
     public void setImageURL(String imageURL) {
-        ArrayList<ImageURL> imageList = new ArrayList<>();
-        imageList.add(new ImageURL(imageURL));
+        ArrayList<ImageURLInfo> imageList = new ArrayList<>();
+        imageList.add(new ImageURLInfo(imageURL));
         this.media = new ArrayList<>();
         this.media.add(0, new MediaInfo(imageList));
     }

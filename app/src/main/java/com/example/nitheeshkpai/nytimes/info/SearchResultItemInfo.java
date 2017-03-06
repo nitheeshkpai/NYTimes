@@ -1,4 +1,4 @@
-package com.example.nitheeshkpai.nytimes;
+package com.example.nitheeshkpai.nytimes.info;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -6,12 +6,13 @@ import java.util.ArrayList;
 
 /**
  * Created by nitheeshkpai on 3/4/17.
+ * Info class that converts search JSON response to objects
  */
 @SuppressWarnings("unused")
-class SearchResultItemInfo {
+public class SearchResultItemInfo {
 
     @SerializedName("headline")
-    private Headline headline;
+    private HeadlineInfo headlineInfo;
 
     @SerializedName("web_url")
     private String link;
@@ -20,14 +21,14 @@ class SearchResultItemInfo {
     private String body;
 
     @SerializedName("multimedia")
-    private ArrayList<ImageURL> imagesInfoList;
+    private ArrayList<ImageURLInfo> imagesInfoList;
 
     @SerializedName("pub_date")
     private String publishedDate;
 
 
     public String getTitle() {
-        return headline.getTitle();
+        return headlineInfo.getTitle();
     }
 
     public String getLink() {
@@ -42,14 +43,14 @@ class SearchResultItemInfo {
         return publishedDate;
     }
 
-    public ArrayList<ImageURL> getImageURL() {
-        if(imagesInfoList.isEmpty()){
+    public ArrayList<ImageURLInfo> getImageURL() {
+        if (imagesInfoList.isEmpty()) {
             return null;
         }
-        ArrayList<ImageURL> urlWithSourceList = new ArrayList<>();
-        for(ImageURL temp : imagesInfoList){
+        ArrayList<ImageURLInfo> urlWithSourceList = new ArrayList<>();
+        for (ImageURLInfo temp : imagesInfoList) {
             String IMAGE_SOURCE = "http://www.nytimes.com/";
-            urlWithSourceList.add(new ImageURL(IMAGE_SOURCE +temp.getURL()));
+            urlWithSourceList.add(new ImageURLInfo(IMAGE_SOURCE + temp.getURL()));
         }
         return urlWithSourceList;
     }

@@ -13,6 +13,7 @@ import android.webkit.WebViewClient;
 
 /**
  * Created by nitheeshkpai on 3/3/17.
+ * Activity that holds a Webview to open the url of the news articles
  */
 public class WebViewActivity extends AppCompatActivity {
 
