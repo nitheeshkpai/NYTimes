@@ -62,6 +62,9 @@ public class SavedNewsItemsActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.saved_items_menu, menu);
+        if (newsItemsList.isEmpty()) {
+            menu.findItem(R.id.remove_all).setEnabled(false);
+        }
         return super.onCreateOptionsMenu(menu);
     }
 
