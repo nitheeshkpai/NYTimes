@@ -2,7 +2,6 @@ package com.example.nitheeshkpai.nytimes;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -67,7 +65,7 @@ public class NewsItemsAdapter extends RecyclerView.Adapter<NewsItemsAdapter.MyVi
                 public void onClick(View v) {
                     PopupMenu popup = new PopupMenu(mContext,v);
                     MenuInflater inflater = popup.getMenuInflater();
-                    inflater.inflate(R.menu.popup_menu, popup.getMenu());
+                    inflater.inflate(R.menu.card_overflow_popup_menu, popup.getMenu());
 
                     if(mContext instanceof SavedNewsItemsActivity) {
                         popup.getMenu().findItem(R.id.save).setVisible(false);
@@ -117,7 +115,7 @@ public class NewsItemsAdapter extends RecyclerView.Adapter<NewsItemsAdapter.MyVi
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.news_card, parent, false);
+                .inflate(R.layout.news_card_item, parent, false);
         return new MyViewHolder(itemView);
     }
 

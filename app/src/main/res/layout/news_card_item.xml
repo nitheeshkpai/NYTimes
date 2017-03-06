@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/card_bottom_margin"
-        android:elevation="24dp"
+        android:elevation="@dimen/card_elevation"
         android:foreground="?android:attr/selectableItemBackground">
 
         <LinearLayout
@@ -28,8 +28,8 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/card_margin"
                 android:layout_marginStart="@dimen/card_body_margin"
+                android:layout_marginTop="@dimen/card_margin"
                 android:orientation="vertical">
 
                 <RelativeLayout
@@ -40,8 +40,8 @@
                         android:id="@+id/title"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textAlignment="viewStart"
                         android:layout_toStartOf="@+id/more"
+                        android:textAlignment="viewStart"
                         android:textSize="@dimen/card_title_size"
                         android:textStyle="bold" />
 
@@ -49,9 +49,9 @@
                         android:id="@+id/more"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentTop="true"
                         android:layout_alignParentEnd="true"
-                        android:src="@drawable/ic_more"/>
+                        android:layout_alignParentTop="true"
+                        android:src="@drawable/ic_more" />
 
                 </RelativeLayout>
 

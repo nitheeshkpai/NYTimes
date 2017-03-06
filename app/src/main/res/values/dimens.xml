@@ -15,4 +15,6 @@
     <dimen name="nav_title_size">22sp</dimen>
     <dimen name="nav_title_margin">16dp</dimen>
     <dimen name="card_bottom_margin">8dp</dimen>
+    <dimen name="zero_margin">0dp</dimen>
+    <dimen name="card_elevation">24dp</dimen>
 </resources>

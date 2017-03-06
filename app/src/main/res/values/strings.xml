@@ -20,4 +20,5 @@
     <string name="dialog_message_no_bookmarks">No items have been saved so far</string>
     <string name="no_bookmarks">No News Items</string>
     <string name="delete">Delete</string>
+    <string name="app_full_name">The New York Times</string>
 </resources>

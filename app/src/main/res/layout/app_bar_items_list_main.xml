@@ -17,11 +17,11 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            app:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/activity_news_feed" />
+    <include layout="@layout/content_news_feed" />
 
 </android.support.design.widget.CoordinatorLayout>
