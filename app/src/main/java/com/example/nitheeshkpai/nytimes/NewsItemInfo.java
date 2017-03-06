@@ -1,5 +1,7 @@
 package com.example.nitheeshkpai.nytimes;
 
+import android.support.annotation.Nullable;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
@@ -17,13 +19,14 @@ public class NewsItemInfo {
     @SerializedName("abstract")
     private String body;
 
+    @Nullable
     @SerializedName("media")
     private ArrayList<MediaInfo> media;
 
     @SerializedName("published_date")
     private String publishedDate;
 
-    public NewsItemInfo(){
+    public NewsItemInfo() {
 
     }
 
@@ -33,7 +36,7 @@ public class NewsItemInfo {
         this.body = temp.getBody();
         this.publishedDate = temp.getPublishedDate();
         this.media = new ArrayList<>();
-        this.media.add(0,new MediaInfo(temp.getImageURL()));
+        this.media.add(0, new MediaInfo(temp.getImageURL()));
     }
 
     public String getTitle() {
@@ -49,6 +52,9 @@ public class NewsItemInfo {
     }
 
     public String getImageURL() {
+        if (media == null || media.isEmpty()) {
+            return null;
+        }
         return media.get(0).getImageURL();
     }
 

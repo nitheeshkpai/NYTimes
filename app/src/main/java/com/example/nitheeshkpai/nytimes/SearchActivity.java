@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -19,6 +20,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONArray;
@@ -116,7 +118,13 @@ public class SearchActivity extends AppCompatActivity {
 
                         Type type = new TypeToken<List<SearchResultItemInfo>>() {
                         }.getType();
-                        searchResultItemsInfoList = gson.fromJson(searchResultItemsJSONArray.toString(), type);
+
+                        try {
+                            searchResultItemsInfoList = gson.fromJson(searchResultItemsJSONArray.toString(), type);
+                        } catch (JsonSyntaxException e) {
+                            Toast.makeText(SearchActivity.this, "Bad data from Server!", Toast.LENGTH_SHORT).show();
+                            e.printStackTrace();
+                        }
 
                         for (SearchResultItemInfo temp : searchResultItemsInfoList) {
                             displayList.add(new NewsItemInfo(temp));

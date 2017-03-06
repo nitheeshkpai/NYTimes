@@ -134,7 +134,7 @@ public class NewsFeedActivity extends AppCompatActivity implements SwipeRefreshL
 
     private void makeNetworkRequest() {
 
-        GsonBuilder gsonBuilder = new GsonBuilder();
+        GsonBuilder gsonBuilder = new GsonBuilder().serializeNulls();
         gson = gsonBuilder.create();
 
         RequestQueue queue = Volley.newRequestQueue(this);
@@ -151,12 +151,14 @@ public class NewsFeedActivity extends AppCompatActivity implements SwipeRefreshL
                             e.printStackTrace();
                         }
 
+                        String syntaxCorrectedJSONString = handleJSONSyntax(newsItemsListJSONArray);
+
                         Type type = new TypeToken<List<NewsItemInfo>>() {
                         }.getType();
                         try {
-                            newsItemsInfoList = gson.fromJson(newsItemsListJSONArray.toString(), type);
+                            newsItemsInfoList = gson.fromJson(syntaxCorrectedJSONString, type);
                         } catch (JsonSyntaxException e) {
-                            Toast.makeText(NewsFeedActivity.this,"JSON format changed on Web?",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(NewsFeedActivity.this,"Bad data from Server!",Toast.LENGTH_SHORT).show();
                             e.printStackTrace();
                         }
 
@@ -178,6 +180,17 @@ public class NewsFeedActivity extends AppCompatActivity implements SwipeRefreshL
             }
         });
         queue.add(stringRequest);
+    }
+
+    /*
+     * Handle edge cases of the JSON parsing
+     */
+    private String handleJSONSyntax(JSONArray newsItemsListJSONArray) {
+        String currentKeyTags = "\"media\":\"\"";
+        String expectedKeyTags = "\"media\":[]";
+
+        return newsItemsListJSONArray.toString()
+                .replaceAll(currentKeyTags, expectedKeyTags);
     }
 
     private void updateUI() {

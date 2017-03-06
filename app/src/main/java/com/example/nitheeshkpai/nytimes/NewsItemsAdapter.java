@@ -90,6 +90,7 @@ public class NewsItemsAdapter extends RecyclerView.Adapter<NewsItemsAdapter.MyVi
         sendIntent.setAction(Intent.ACTION_SEND);
         sendIntent.putExtra(Intent.EXTRA_TEXT, currentItem.getLink());
         sendIntent.setType("text/plain");
+        sendIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP );
         mContext.startActivity(sendIntent);
     }
 
@@ -108,7 +109,7 @@ public class NewsItemsAdapter extends RecyclerView.Adapter<NewsItemsAdapter.MyVi
         holder.date.setText(formatDate(holder.currentItem.getDate()));
         holder.body.setText(holder.currentItem.getBody());
 
-        Picasso.with(mContext).load(holder.currentItem.getImageURL()).placeholder(new ColorDrawable(mContext.getResources().getColor(R.color.dark_grey))).into(holder.thumbnail);
+        Picasso.with(mContext).load(holder.currentItem.getImageURL()).placeholder(mContext.getResources().getDrawable(R.mipmap.ny_times_default_image)).into(holder.thumbnail);
     }
 
     private String formatDate(String dateString) {
