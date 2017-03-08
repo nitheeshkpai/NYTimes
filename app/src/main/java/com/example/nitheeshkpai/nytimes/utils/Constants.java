@@ -7,7 +7,9 @@ package com.example.nitheeshkpai.nytimes.utils;
 
 public class Constants {
 
-    public static final String MOST_VIEWED_REQUEST_URL = "https://api.nytimes.com/svc/mostpopular/v2/mostviewed/all-sections/1.json?";
-    public static final String SEARCH_REQUEST_URL = "https://api.nytimes.com/svc/search/v2/articlesearch.json?";
-    public static final String USER_API_KEY = "api_key=6e766524b9f94c7b9910b09198659fe9";
+    public static final String MOST_VIEWED_REQUEST_URL = "https://newsapi.org/v1/articles?source=";
+    public static final String VIEW_REQUEST_URL_SUFFIX = "&sortBy=top";
+    public static final String SOURCES_LIST_URL =  "https://newsapi.org/v1/sources?language=en";
+    public static final String USER_API_KEY = "&apiKey=3bf0bab2a08f4d368f16d76e69fe5bca";
+
 }

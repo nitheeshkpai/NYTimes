@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_marginTop="@dimen/card_body_margin"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <ImageView
+        android:id="@+id/source_logo"
+        android:layout_width="@dimen/card_thumbnail_side"
+        android:layout_height="@dimen/card_thumbnail_side" />
+</LinearLayout>

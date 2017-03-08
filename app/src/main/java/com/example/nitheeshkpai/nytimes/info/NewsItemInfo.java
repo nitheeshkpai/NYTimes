@@ -17,27 +17,17 @@ public class NewsItemInfo {
     @SerializedName("url")
     private String link;
 
-    @SerializedName("abstract")
+    @SerializedName("description")
     private String body;
 
-    @Nullable
-    @SerializedName("media")
-    private ArrayList<MediaInfo> media;
+    @SerializedName("urlToImage")
+    private String urlToImage;
 
-    @SerializedName("published_date")
+    @SerializedName("publishedAt")
     private String publishedDate;
 
     public NewsItemInfo() {
 
-    }
-
-    public NewsItemInfo(SearchResultItemInfo temp) {
-        this.title = temp.getTitle();
-        this.link = temp.getLink();
-        this.body = temp.getBody();
-        this.publishedDate = temp.getPublishedDate();
-        this.media = new ArrayList<>();
-        this.media.add(0, new MediaInfo(temp.getImageURL()));
     }
 
     public String getTitle() {
@@ -53,10 +43,7 @@ public class NewsItemInfo {
     }
 
     public String getImageURL() {
-        if (media == null || media.isEmpty()) {
-            return null;
-        }
-        return media.get(0).getImageURL();
+        return urlToImage;
     }
 
     public String getLink() {
@@ -80,10 +67,7 @@ public class NewsItemInfo {
     }
 
     public void setImageURL(String imageURL) {
-        ArrayList<ImageURLInfo> imageList = new ArrayList<>();
-        imageList.add(new ImageURLInfo(imageURL));
-        this.media = new ArrayList<>();
-        this.media.add(0, new MediaInfo(imageList));
+        this.urlToImage = imageURL;
     }
 
 }

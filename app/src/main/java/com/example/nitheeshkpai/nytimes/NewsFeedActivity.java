@@ -42,7 +42,7 @@ import java.util.List;
 
 public class NewsFeedActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener, NavigationView.OnNavigationItemSelectedListener {
 
-    private final String NEWS_JSON_KEY = "results";
+    private final String NEWS_JSON_KEY = "articles";
 
     private SwipeRefreshLayout swipeRefreshLayout;
 
@@ -53,6 +53,8 @@ public class NewsFeedActivity extends AppCompatActivity implements SwipeRefreshL
     private NewsItemsAdapter adapter;
     private List<NewsItemInfo> newsItemsInfoList = new ArrayList<>();
     private final List<NewsItemInfo> displayList = new ArrayList<>();
+
+    private String newsSource = "bbc-news";
 
     private int previousTotal = 0;
     private boolean loading = true;
@@ -91,7 +93,7 @@ public class NewsFeedActivity extends AppCompatActivity implements SwipeRefreshL
             @Override
             public void run() {
                 swipeRefreshLayout.setRefreshing(true);
-                makeNetworkRequest();
+                makeNetworkRequest(newsSource);
             }
         });
     }
@@ -156,18 +158,19 @@ public class NewsFeedActivity extends AppCompatActivity implements SwipeRefreshL
         });
     }
 
-    private void makeNetworkRequest() {
+    private void makeNetworkRequest(String source) {
 
         GsonBuilder gsonBuilder = new GsonBuilder().serializeNulls();
         gson = gsonBuilder.create();
 
         RequestQueue queue = Volley.newRequestQueue(this);
 
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.MOST_VIEWED_REQUEST_URL + Constants.USER_API_KEY,
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.MOST_VIEWED_REQUEST_URL + newsSource + Constants.VIEW_REQUEST_URL_SUFFIX + Constants.USER_API_KEY,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         JSONArray newsItemsListJSONArray = null;
+                        newsItemsInfoList.clear();
                         try {
                             JSONObject jsonObj = new JSONObject(response);
                             newsItemsListJSONArray = jsonObj.getJSONArray(NEWS_JSON_KEY);
@@ -175,20 +178,18 @@ public class NewsFeedActivity extends AppCompatActivity implements SwipeRefreshL
                             e.printStackTrace();
                         }
 
-                        String syntaxCorrectedJSONString = handleJSONSyntax(newsItemsListJSONArray);
+                        //String syntaxCorrectedJSONString = handleJSONSyntax(newsItemsListJSONArray);
 
                         Type type = new TypeToken<List<NewsItemInfo>>() {
                         }.getType();
                         try {
-                            newsItemsInfoList = gson.fromJson(syntaxCorrectedJSONString, type);
+                            newsItemsInfoList = gson.fromJson(newsItemsListJSONArray.toString(), type);
                         } catch (JsonSyntaxException e) {
                             Toast.makeText(NewsFeedActivity.this, "Bad data from Server!", Toast.LENGTH_SHORT).show();
                             e.printStackTrace();
                         }
 
-                        if (newsItemsInfoList.size() != displayList.size()) {
-                            updateUI();
-                        }
+                        updateUI();
                         swipeRefreshLayout.setRefreshing(false);
                     }
                 }, new Response.ErrorListener() {
@@ -217,7 +218,17 @@ public class NewsFeedActivity extends AppCompatActivity implements SwipeRefreshL
                 .replaceAll(currentKeyTags, expectedKeyTags);
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1) {
+            newsSource = data.getStringExtra("source");
+            makeNetworkRequest(newsSource);
+        }
+    }
+
     private void updateUI() {
+        displayList.clear();
         for (int i = 0; i < 10; i++) {
             if (!newsItemsInfoList.isEmpty()) {
                 displayList.add(newsItemsInfoList.get(0));
@@ -230,16 +241,16 @@ public class NewsFeedActivity extends AppCompatActivity implements SwipeRefreshL
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.search:
-                final Intent intent = new Intent(this, SearchActivity.class);
-                startActivity(intent);
+            case R.id.filter:
+                Intent intent = new Intent(this, SelectFilterActivity.class);
+                startActivityForResult(intent, 1);
         }
         return true;
     }
 
     @Override
     public void onRefresh() {
-        makeNetworkRequest();
+        makeNetworkRequest(newsSource);
     }
 
     @Override

@@ -29,13 +29,12 @@
             android:launchMode="singleTop"/>
 
         <activity
-            android:name=".SearchActivity"
-            android:label="Search"
-            android:parentActivityName=".NewsFeedActivity"/>
-
-        <activity
             android:name=".SavedNewsItemsActivity"
             android:label="Saved Articles"
+            android:parentActivityName=".NewsFeedActivity"/>
+
+        <activity android:name=".SelectFilterActivity"
+            android:label="@string/select_source"
             android:parentActivityName=".NewsFeedActivity"/>
 
     </application>
