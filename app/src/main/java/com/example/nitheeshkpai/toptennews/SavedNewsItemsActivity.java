@@ -1,4 +1,4 @@
-package com.example.nitheeshkpai.nytimes;
+package com.example.nitheeshkpai.toptennews;
 
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
@@ -12,8 +12,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.example.nitheeshkpai.nytimes.info.NewsItemInfo;
-import com.example.nitheeshkpai.nytimes.utils.DatabaseHandler;
+import com.example.nitheeshkpai.toptennews.info.NewsItemInfo;
+import com.example.nitheeshkpai.toptennews.utils.DatabaseHandler;
 
 import java.util.ArrayList;
 import java.util.List;

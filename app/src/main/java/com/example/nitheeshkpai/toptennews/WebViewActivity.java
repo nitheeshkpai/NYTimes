@@ -1,4 +1,4 @@
-package com.example.nitheeshkpai.nytimes;
+package com.example.nitheeshkpai.toptennews;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;

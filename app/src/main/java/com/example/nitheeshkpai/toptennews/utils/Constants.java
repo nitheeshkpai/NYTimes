@@ -1,4 +1,4 @@
-package com.example.nitheeshkpai.nytimes.utils;
+package com.example.nitheeshkpai.toptennews.utils;
 
 /**
  * Created by nitheeshkpai on 3/6/17.

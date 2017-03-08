@@ -1,4 +1,4 @@
-package com.example.nitheeshkpai.nytimes;
+package com.example.nitheeshkpai.toptennews;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -15,8 +15,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.nitheeshkpai.nytimes.info.SourceItemInfo;
-import com.example.nitheeshkpai.nytimes.utils.Constants;
+import com.example.nitheeshkpai.toptennews.info.SourceItemInfo;
+import com.example.nitheeshkpai.toptennews.utils.Constants;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;

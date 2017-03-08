@@ -1,10 +1,6 @@
-package com.example.nitheeshkpai.nytimes.info;
-
-import android.support.annotation.Nullable;
+package com.example.nitheeshkpai.toptennews.info;
 
 import com.google.gson.annotations.SerializedName;
-
-import java.util.ArrayList;
 
 /**
  * Created by nitheeshkpai on 3/3/17.

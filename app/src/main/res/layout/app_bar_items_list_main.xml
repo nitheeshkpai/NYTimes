@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.example.nitheeshkpai.nytimes.NewsFeedActivity">
+    tools:context="com.example.nitheeshkpai.toptennews.NewsFeedActivity">
 
     <include layout="@layout/content_news_feed" />
 
@@ -30,18 +30,17 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
                     android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:text="@string/app_full_name"
                     android:textColor="@android:color/white"
-                    android:textSize="@dimen/toolbar_title"
-                    android:text="@string/app_full_name"/>
+                    android:textSize="@dimen/toolbar_title" />
 
                 <ImageView
                     android:id="@+id/logo_image"
-                    android:src="@mipmap/ic_launcher"
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
-                    android:layout_alignParentEnd="true"/>
+                    android:layout_width="@dimen/logo_toolbar_side"
+                    android:layout_height="@dimen/logo_toolbar_side"
+                    android:layout_alignParentEnd="true" />
 
             </RelativeLayout>
 
