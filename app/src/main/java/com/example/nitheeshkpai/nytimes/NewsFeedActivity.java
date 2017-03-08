@@ -1,7 +1,9 @@
 package com.example.nitheeshkpai.nytimes;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -17,6 +19,7 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -25,6 +28,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
 import com.example.nitheeshkpai.nytimes.info.NewsItemInfo;
 import com.example.nitheeshkpai.nytimes.utils.Constants;
 import com.google.gson.Gson;
@@ -45,6 +49,7 @@ public class NewsFeedActivity extends AppCompatActivity implements SwipeRefreshL
     private final String NEWS_JSON_KEY = "articles";
 
     private SwipeRefreshLayout swipeRefreshLayout;
+    private ImageView sourceLogoImageView;
 
     private Gson gson;
 
@@ -54,17 +59,10 @@ public class NewsFeedActivity extends AppCompatActivity implements SwipeRefreshL
     private List<NewsItemInfo> newsItemsInfoList = new ArrayList<>();
     private final List<NewsItemInfo> displayList = new ArrayList<>();
 
-    private String newsSource = "bbc-news";
+    private String newsSource;
+    public String sourceLogo;
 
-    private int previousTotal = 0;
-    private boolean loading = true;
-    private final int visibleThreshold = 5;
-    @SuppressWarnings("WeakerAccess")
-    private int firstVisibleItem;
-    @SuppressWarnings("WeakerAccess")
-    private int visibleItemCount;
-    @SuppressWarnings("WeakerAccess")
-    private int totalItemCount;
+    SharedPreferences sourcePreference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,7 +91,7 @@ public class NewsFeedActivity extends AppCompatActivity implements SwipeRefreshL
             @Override
             public void run() {
                 swipeRefreshLayout.setRefreshing(true);
-                makeNetworkRequest(newsSource);
+                makeNetworkRequest();
             }
         });
     }
@@ -128,37 +126,21 @@ public class NewsFeedActivity extends AppCompatActivity implements SwipeRefreshL
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(swipeActions);
         itemTouchHelper.attachToRecyclerView(recyclerView);
         Toast.makeText(this, this.getResources().getString(R.string.swipe_left_to_bookmark), Toast.LENGTH_SHORT).show();
+
+        sourcePreference = PreferenceManager.getDefaultSharedPreferences(this);
+        newsSource = sourcePreference.getString("sourcePref","bbc-news");
+        sourceLogo = sourcePreference.getString("logoPref", "http://i.newsapi.org/bbc-news-s.png");
+
+        sourceLogoImageView = (ImageView) findViewById(R.id.logo_image);
+        Glide.with(this).load(sourceLogo).into(sourceLogoImageView);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-
-                visibleItemCount = recyclerView.getChildCount();
-                totalItemCount = mLayoutManager.getItemCount();
-                firstVisibleItem = mLayoutManager.findFirstVisibleItemPosition();
-
-                if (loading) {
-                    if (totalItemCount > previousTotal) {
-                        loading = false;
-                        previousTotal = totalItemCount;
-                    }
-                }
-                if (!loading && (totalItemCount - visibleItemCount)
-                        <= (firstVisibleItem + visibleThreshold)) {
-                    updateUI();
-                    loading = true;
-                }
-            }
-        });
     }
 
-    private void makeNetworkRequest(String source) {
+    private void makeNetworkRequest() {
 
         GsonBuilder gsonBuilder = new GsonBuilder().serializeNulls();
         gson = gsonBuilder.create();
@@ -221,9 +203,17 @@ public class NewsFeedActivity extends AppCompatActivity implements SwipeRefreshL
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1) {
+        if (requestCode == 1 && data != null) {
             newsSource = data.getStringExtra("source");
-            makeNetworkRequest(newsSource);
+            sourceLogo = data.getStringExtra("logo");
+
+            Glide.with(this).load(sourceLogo).into(sourceLogoImageView);
+            makeNetworkRequest();
+
+            SharedPreferences.Editor editor = sourcePreference.edit();
+            editor.putString("sourcePref", newsSource);
+            editor.putString("logoPref", sourceLogo);
+            editor.apply();
         }
     }
 
@@ -250,7 +240,7 @@ public class NewsFeedActivity extends AppCompatActivity implements SwipeRefreshL
 
     @Override
     public void onRefresh() {
-        makeNetworkRequest(newsSource);
+        makeNetworkRequest();
     }
 
     @Override

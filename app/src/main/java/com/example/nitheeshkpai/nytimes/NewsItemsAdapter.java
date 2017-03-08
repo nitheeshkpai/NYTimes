@@ -2,6 +2,13 @@ package com.example.nitheeshkpai.nytimes;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
+import android.preference.PreferenceManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,10 +17,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.nitheeshkpai.nytimes.info.NewsItemInfo;
 import com.example.nitheeshkpai.nytimes.utils.DatabaseHandler;
 import com.squareup.picasso.Picasso;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -123,7 +134,7 @@ public class NewsItemsAdapter extends RecyclerView.Adapter<NewsItemsAdapter.MyVi
         holder.body.setText(holder.currentItem.getBody());
 
         //noinspection deprecation
-        Picasso.with(mContext).load(holder.currentItem.getImageURL()).placeholder(mContext.getResources().getDrawable(R.mipmap.ny_times_default_image)).into(holder.thumbnail);
+        Picasso.with(mContext).load(holder.currentItem.getImageURL()).placeholder(new ColorDrawable(mContext.getResources().getColor(R.color.colorAccent))).into(holder.thumbnail);
     }
 
     private String formatDate(String dateString) {

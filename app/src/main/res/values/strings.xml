@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">NYTimes</string>
+    <string name="app_name">Top 10</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -17,7 +17,7 @@
     <string name="already_bookmarked">Article is already saved</string>
     <string name="dialog_message_no_bookmarks">No items have been saved so far</string>
     <string name="no_bookmarks">No News Items</string>
-    <string name="app_full_name">The New York Times</string>
+    <string name="app_full_name">The Top 10 News</string>
     <string name="card_view">Card View</string>
     <string name="share">Share</string>
     <string name="delete_all">Delete all</string>

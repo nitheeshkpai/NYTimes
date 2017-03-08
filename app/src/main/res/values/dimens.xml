@@ -16,4 +16,5 @@
     <dimen name="card_bottom_margin">8dp</dimen>
     <dimen name="zero_margin">0dp</dimen>
     <dimen name="card_elevation">24dp</dimen>
+    <dimen name="toolbar_title">22sp</dimen>
 </resources>

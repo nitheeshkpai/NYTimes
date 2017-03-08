@@ -7,6 +7,8 @@
     android:fitsSystemWindows="true"
     tools:context="com.example.nitheeshkpai.nytimes.NewsFeedActivity">
 
+    <include layout="@layout/content_news_feed" />
+
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -18,10 +20,33 @@
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
             app:popupTheme="@style/AppTheme.PopupOverlay"
-            app:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
+            app:theme="@style/ThemeOverlay.AppCompat.ActionBar">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentStart="true"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/toolbar_title"
+                    android:text="@string/app_full_name"/>
+
+                <ImageView
+                    android:id="@+id/logo_image"
+                    android:src="@mipmap/ic_launcher"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:layout_alignParentEnd="true"/>
+
+            </RelativeLayout>
+
+        </android.support.v7.widget.Toolbar>
 
     </android.support.design.widget.AppBarLayout>
-
-    <include layout="@layout/content_news_feed" />
 
 </android.support.design.widget.CoordinatorLayout>

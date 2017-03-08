@@ -3,6 +3,7 @@ package com.example.nitheeshkpai.nytimes;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,7 +35,7 @@ public class SourceItemsAdapter extends RecyclerView.Adapter<SourceItemsAdapter.
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.currentItem = sourceItemsInfoList.get(position);
-        Picasso.with(mActivity.getApplicationContext()).load(holder.currentItem.urlContainer.getLogoImageUrl()).placeholder(mActivity.getResources().getDrawable(R.mipmap.ny_times_default_image)).into(holder.logo);
+        Picasso.with(mActivity.getApplicationContext()).load(holder.currentItem.urlContainer.getLogoImageUrl()).placeholder(new ColorDrawable(mActivity.getResources().getColor(R.color.colorAccent))).into(holder.logo);
     }
 
     @Override
@@ -55,6 +56,7 @@ public class SourceItemsAdapter extends RecyclerView.Adapter<SourceItemsAdapter.
                 public void onClick(View v) {
                     Intent intent=new Intent();
                     intent.putExtra("source",currentItem.getId());
+                    intent.putExtra("logo", currentItem.urlContainer.getLogoImageUrl());
                     mActivity.setResult(2,intent);
                     mActivity.finish();//finishing activity
 
