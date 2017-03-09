@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Top 10</string>
+    <string name="app_name">Top Ten News</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -7,7 +7,6 @@
     <string name="dialog_message_no_network">Something seems to be wrong with the network</string>
     <string name="no_network">Network error</string>
     <string name="search_title">Search</string>
-    <string name="enter_keyword">Enter search keyword</string>
 
     <string name="default_date"> </string>
     <string name="saved_articles">Saved Articles</string>
@@ -17,7 +16,7 @@
     <string name="already_bookmarked">Article is already saved</string>
     <string name="dialog_message_no_bookmarks">No items have been saved so far</string>
     <string name="no_bookmarks">No News Items</string>
-    <string name="app_full_name">The Top 10 News</string>
+    <string name="app_full_name">The Top Ten News</string>
     <string name="card_view">Card View</string>
     <string name="share">Share</string>
     <string name="delete_all">Delete all</string>
@@ -25,4 +24,6 @@
     <string name="swipe_right_to_delete">Swipe right to remove article</string>
     <string name="select_source">Select News Source</string>
     <string name="open_external_browser">Open in External Browser</string>
+    <string name="logo">Source Logo</string>
+    <string name="credits_string">Powered by https://newsapi.org/</string>
 </resources>

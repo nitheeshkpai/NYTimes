@@ -2,7 +2,6 @@ package com.example.nitheeshkpai.toptennews;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,7 +32,7 @@ public class SourceItemsAdapter extends RecyclerView.Adapter<SourceItemsAdapter.
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.currentItem = sourceItemsInfoList.get(position);
-        Picasso.with(mActivity.getApplicationContext()).load(holder.currentItem.urlContainer.getLogoImageUrl()).placeholder(new ColorDrawable(mActivity.getResources().getColor(R.color.lightGrey))).into(holder.logo);
+        Picasso.with(mActivity.getApplicationContext()).load(holder.currentItem.urlContainer.getLogoImageUrl()).placeholder(mActivity.getResources().getDrawable(R.mipmap.ic_launcher)).into(holder.logo);
     }
 
     @Override
@@ -43,7 +42,7 @@ public class SourceItemsAdapter extends RecyclerView.Adapter<SourceItemsAdapter.
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         public SourceItemInfo currentItem;
-        private ImageView logo;
+        private final ImageView logo;
 
         public ViewHolder(View view) {
             super(view);

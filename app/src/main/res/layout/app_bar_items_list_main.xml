@@ -38,6 +38,7 @@
 
                 <ImageView
                     android:id="@+id/logo_image"
+                    android:contentDescription="@string/logo"
                     android:layout_width="@dimen/logo_toolbar_side"
                     android:layout_height="@dimen/logo_toolbar_side"
                     android:layout_alignParentEnd="true" />

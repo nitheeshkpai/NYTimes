@@ -9,12 +9,10 @@
     <dimen name="card_thumbnail_side">96dp</dimen>
     <dimen name="date_font_size">14sp</dimen>
     <dimen name="card_body_margin">8dp</dimen>
-    <dimen name="search_text_margin">32dp</dimen>
     <dimen name="logo_size">96dp</dimen>
     <dimen name="nav_title_size">22sp</dimen>
     <dimen name="nav_title_margin">16dp</dimen>
     <dimen name="card_bottom_margin">8dp</dimen>
-    <dimen name="zero_margin">0dp</dimen>
     <dimen name="card_elevation">24dp</dimen>
     <dimen name="toolbar_title">22sp</dimen>
     <dimen name="logo_toolbar_side">56dp</dimen>

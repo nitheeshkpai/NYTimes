@@ -16,14 +16,11 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
-import android.text.Html;
-import android.text.method.LinkMovementMethod;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -57,16 +54,14 @@ public class NewsFeedActivity extends AppCompatActivity implements SwipeRefreshL
 
     private Gson gson;
 
-    private RecyclerView recyclerView;
-    private LinearLayoutManager mLayoutManager;
     private NewsItemsAdapter adapter;
     private List<NewsItemInfo> newsItemsInfoList = new ArrayList<>();
     private final List<NewsItemInfo> displayList = new ArrayList<>();
 
     private String newsSource;
-    public String sourceLogo;
+    private String sourceLogo;
 
-    SharedPreferences sourcePreference;
+    private SharedPreferences sourcePreference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,8 +96,8 @@ public class NewsFeedActivity extends AppCompatActivity implements SwipeRefreshL
     }
 
     private void initView() {
-        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-        mLayoutManager = new LinearLayoutManager(this);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(mLayoutManager);
 
         adapter = new NewsItemsAdapter(this, displayList);
@@ -144,11 +139,6 @@ public class NewsFeedActivity extends AppCompatActivity implements SwipeRefreshL
                 startActivityForResult(intent, 1);
             }
         });
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
     }
 
     private void makeNetworkRequest() {
@@ -198,17 +188,6 @@ public class NewsFeedActivity extends AppCompatActivity implements SwipeRefreshL
             }
         });
         queue.add(stringRequest);
-    }
-
-    /*
-     * Handle edge cases of the JSON parsing
-     */
-    private String handleJSONSyntax(JSONArray newsItemsListJSONArray) {
-        String currentKeyTags = "\"media\":\"\"";
-        String expectedKeyTags = "\"media\":[]";
-
-        return newsItemsListJSONArray.toString()
-                .replaceAll(currentKeyTags, expectedKeyTags);
     }
 
     @Override

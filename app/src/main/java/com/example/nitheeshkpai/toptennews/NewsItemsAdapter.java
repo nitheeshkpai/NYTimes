@@ -2,7 +2,6 @@ package com.example.nitheeshkpai.toptennews;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
 import android.support.v7.widget.RecyclerView;
 import android.text.format.DateUtils;
 import android.view.LayoutInflater;
@@ -125,7 +124,7 @@ public class NewsItemsAdapter extends RecyclerView.Adapter<NewsItemsAdapter.MyVi
         holder.body.setText(holder.currentItem.getBody());
 
         //noinspection deprecation
-        Picasso.with(mContext).load(holder.currentItem.getImageURL()).placeholder(new ColorDrawable(mContext.getResources().getColor(R.color.colorAccent))).into(holder.thumbnail);
+        Picasso.with(mContext).load(holder.currentItem.getImageURL()).placeholder(mContext.getResources().getDrawable(R.mipmap.ic_launcher)).into(holder.thumbnail);
     }
 
     private String formatDate(String dateString) {
@@ -135,7 +134,7 @@ public class NewsItemsAdapter extends RecyclerView.Adapter<NewsItemsAdapter.MyVi
 
         SimpleDateFormat form = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.US);
         Date date = null;
-        CharSequence timePassedString = null;
+        CharSequence timePassedString;
 
         try {
             date = form.parse(dateString);
