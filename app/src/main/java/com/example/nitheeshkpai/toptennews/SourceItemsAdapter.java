@@ -55,18 +55,7 @@ public class SourceItemsAdapter extends RecyclerView.Adapter<SourceItemsAdapter.
                     intent.putExtra("source",currentItem.getId());
                     intent.putExtra("logo", currentItem.urlContainer.getLogoImageUrl());
                     mActivity.setResult(2,intent);
-                    mActivity.finish();//finishing activity
-
-                }
-            });
-
-            view.setOnLongClickListener(new View.OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View v) {
-                    final Intent intent = new Intent(mActivity, WebViewActivity.class);
-                    intent.putExtra(WebViewActivity.LINK_EXTRA, currentItem.getLink());
-                    mActivity.startActivity(intent);
-                    return false;
+                    mActivity.finish();
                 }
             });
         }

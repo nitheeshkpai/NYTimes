@@ -1,5 +1,6 @@
 <resources>
-    <string name="app_name">Top Ten News</string>
+    <string name="app_name">Top10 News</string>
+    <string name="app_full_name">The Top10 News</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -16,7 +17,6 @@
     <string name="already_bookmarked">Article is already saved</string>
     <string name="dialog_message_no_bookmarks">No items have been saved so far</string>
     <string name="no_bookmarks">No News Items</string>
-    <string name="app_full_name">The Top Ten News</string>
     <string name="card_view">Card View</string>
     <string name="share">Share</string>
     <string name="delete_all">Delete all</string>
@@ -30,8 +30,11 @@
     <string name="intro_text_header">Hey!</string>
     <string name="tips_text_header">Tips:</string>
     <string name="contact_text_header">Contact:</string>
-    <string name="intro_text">I believe that the News you really need to know will always be present in the Top Ten of the your favourite News Agency. This app is built on that idea, rather than having hundreds of articles and killing your time by getting you engaged in the app. This is a non-commercial News App with the objective of saving your time with data sourced from "newsapi.org". </string>
-    <string name="tips_text">Swipe left on articles to save for later \nSwipe right on saved articles to delete</string>
+    <string name="intro_text">Have you ever opened a newspaper and read that two column news on the fifth page?\nThe news you need is always there on the front page.\nTop10 News brings you the top ten news from News agencies of your choice from around the world.\nSave the ones you think require further reading. That\'s it.\nNo notifications. No beeps. No sign up.\nAnd No Ads.\nTop10 News is non-commercial and is sourced from newsapi.org</string>
+    <string name="tips_text">Swipe left to save an article.\nSwipe right to delete a saved article.</string>
     <string name="final_word">Dont waste your life scrolling, stay updated with the Top Ten News and take your eyes off your phone!</string>
-    <string name="contact">Reach out to me on the Playstore with feedback and suggestions</string>
+    <string name="contact">Have a suggestion?\nDo you think we can improve?\nWrite to us at: nitheeshkpai@gmail.com</string>
+    <string name="label_webview_activity">Full Story</string>
+    <string name="label_savednews_activity">Saved Articles</string>
+    <string name="save">Save for later</string>
 </resources>

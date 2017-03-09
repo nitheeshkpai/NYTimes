@@ -25,12 +25,12 @@
 
         <activity
             android:name=".WebViewActivity"
-            android:label="Details"
+            android:label="@string/label_webview_activity"
             android:launchMode="singleTop"/>
 
         <activity
             android:name=".SavedNewsItemsActivity"
-            android:label="Saved Articles"
+            android:label="@string/label_savednews_activity"
             android:parentActivityName=".NewsFeedActivity"/>
 
         <activity android:name=".SelectFilterActivity"

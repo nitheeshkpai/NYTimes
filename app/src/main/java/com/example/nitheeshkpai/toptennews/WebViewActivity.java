@@ -15,15 +15,20 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import com.example.nitheeshkpai.toptennews.info.NewsItemInfo;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by nitheeshkpai on 3/3/17.
  * Activity that holds a Webview to open the url of the news articles
  */
 public class WebViewActivity extends AppCompatActivity {
 
-    public static final String LINK_EXTRA = "link";
+    public static final String NEWS_ITEM_EXTRA = "news_item";
 
-    private String linkToOpen;
+    private NewsItemInfo newsItem;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -37,13 +42,13 @@ public class WebViewActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
-        linkToOpen = getIntent().getExtras().getString(LINK_EXTRA);
+        newsItem =  getIntent().getParcelableExtra(NEWS_ITEM_EXTRA);
 
         WebView webView = (WebView) findViewById(R.id.webView);
         webView.setWebChromeClient(new WebChromeClient());
         webView.setWebViewClient(new WebClient());
         webView.setLayerType(View.LAYER_TYPE_HARDWARE, null);
-        webView.loadUrl(linkToOpen);
+        webView.loadUrl(newsItem.getLink());
     }
 
     private class WebClient extends WebViewClient {
@@ -71,8 +76,15 @@ public class WebViewActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.open_external:
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(linkToOpen));
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(newsItem.getLink()));
                 startActivity(browserIntent);
+                finish();
+                break;
+            case R.id.save :
+                List<NewsItemInfo> temp = new ArrayList<>();
+                temp.add(newsItem);
+                NewsItemsAdapter adapter = new NewsItemsAdapter(this, temp);
+                adapter.saveNewsItem(newsItem);
             case android.R.id.home:
                 onBackPressed();
         }

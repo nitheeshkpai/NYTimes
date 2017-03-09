@@ -23,19 +23,18 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
+        android:layout_height="wrap_content">
+        
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="@dimen/activity_vertical_margin"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/activity_horizontal_margin"
             android:orientation="vertical">
-
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
-                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:layout_marginBottom="@dimen/header_margin_bottom"
                 android:text="@string/intro_text_header"
                 android:textSize="@dimen/header_font_size"
                 android:textStyle="bold" />
@@ -43,8 +42,7 @@
             <TextView
                 android:id="@+id/intro"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_height="wrap_content"
                 android:text="@string/intro_text"
                 android:textSize="@dimen/text_font_size" />
 
@@ -52,7 +50,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
-                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:layout_marginBottom="@dimen/header_margin_bottom"
                 android:text="@string/tips_text_header"
                 android:textSize="@dimen/header_font_size"
                 android:textStyle="bold" />
@@ -60,8 +58,7 @@
             <TextView
                 android:id="@+id/tips"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_height="wrap_content"
                 android:text="@string/tips_text"
                 android:textSize="@dimen/text_font_size" />
 
@@ -69,7 +66,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
-                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:layout_marginBottom="@dimen/header_margin_bottom"
                 android:text="@string/contact_text_header"
                 android:textSize="@dimen/header_font_size"
                 android:textStyle="bold" />
@@ -77,20 +74,11 @@
             <TextView
                 android:id="@+id/contact"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
                 android:text="@string/contact"
                 android:textSize="@dimen/text_font_size" />
-
-            <TextView
-                android:id="@+id/final_word"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="@string/final_word"
-                android:textSize="@dimen/text_font_size"
-                android:textStyle="bold" />
-
         </LinearLayout>
     </ScrollView>
+
 </LinearLayout>

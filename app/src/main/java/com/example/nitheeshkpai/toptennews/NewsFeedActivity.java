@@ -217,27 +217,10 @@ public class NewsFeedActivity extends AppCompatActivity implements SwipeRefreshL
         }
         adapter.notifyDataSetChanged();
     }
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.filter:
-                Intent intent = new Intent(this, SelectFilterActivity.class);
-                startActivityForResult(intent, 1);
-        }
-        return true;
-    }
-
 
     @Override
     public void onRefresh() {
         makeNetworkRequest();
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.news_feed_options_menu, menu);
-        return true;
     }
 
     @Override

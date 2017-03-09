@@ -58,7 +58,7 @@ public class NewsItemsAdapter extends RecyclerView.Adapter<NewsItemsAdapter.MyVi
                 @Override
                 public void onClick(View v) {
                     final Intent intent = new Intent(mContext, WebViewActivity.class);
-                    intent.putExtra(WebViewActivity.LINK_EXTRA, currentItem.getLink());
+                    intent.putExtra(WebViewActivity.NEWS_ITEM_EXTRA, currentItem);
                     mContext.startActivity(intent);
                 }
             });

@@ -1,12 +1,15 @@
 package com.example.nitheeshkpai.toptennews.info;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
 /**
  * Created by nitheeshkpai on 3/3/17.
  * Main info class used to convert News article JSON response into objects
  */
-public class NewsItemInfo {
+public class NewsItemInfo implements Parcelable {
 
     private String title;
 
@@ -25,6 +28,26 @@ public class NewsItemInfo {
     public NewsItemInfo() {
 
     }
+
+    protected NewsItemInfo(Parcel in) {
+        title = in.readString();
+        link = in.readString();
+        body = in.readString();
+        urlToImage = in.readString();
+        publishedDate = in.readString();
+    }
+
+    public static final Creator<NewsItemInfo> CREATOR = new Creator<NewsItemInfo>() {
+        @Override
+        public NewsItemInfo createFromParcel(Parcel in) {
+            return new NewsItemInfo(in);
+        }
+
+        @Override
+        public NewsItemInfo[] newArray(int size) {
+            return new NewsItemInfo[size];
+        }
+    };
 
     public String getTitle() {
         return title;
@@ -66,4 +89,17 @@ public class NewsItemInfo {
         this.urlToImage = imageURL;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(title);
+        dest.writeString(link);
+        dest.writeString(body);
+        dest.writeString(urlToImage);
+        dest.writeString(publishedDate);
+    }
 }
