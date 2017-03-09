@@ -1,4 +1,4 @@
-package com.example.nitheeshkpai.toptennews.utils;
+package top10news.utils;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -6,7 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.example.nitheeshkpai.toptennews.info.NewsItemInfo;
+import top10news.info.NewsItemInfo;
 
 import java.util.ArrayList;
 import java.util.List;

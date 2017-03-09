@@ -3,6 +3,8 @@
     <words>
       <w>&quot;@string/credits_string&quot;</w>
       <w>gridview</w>
+      <w>newsapi</w>
+      <w>savednews</w>
       <w>toptennews</w>
     </words>
   </dictionary>

@@ -1,4 +1,4 @@
-package com.example.nitheeshkpai.toptennews;
+package top10news;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -15,12 +15,13 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.nitheeshkpai.toptennews.info.SourceItemInfo;
-import com.example.nitheeshkpai.toptennews.utils.Constants;
+import top10news.info.SourceItemInfo;
+import top10news.utils.Constants;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
+import com.techietakalabs.android.top10news.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -41,7 +42,6 @@ public class SelectFilterActivity extends AppCompatActivity {
     private List<SourceItemInfo> sourceItemsInfoList = new ArrayList<>();
 
     private RecyclerView recyclerView;
-    private GridLayoutManager mLayoutManager;
     private SourceItemsAdapter adapter;
 
     private Gson gson;
@@ -64,7 +64,7 @@ public class SelectFilterActivity extends AppCompatActivity {
 
     private void initView() {
         recyclerView = (RecyclerView) findViewById(R.id.recycler_gridview);
-        mLayoutManager = new GridLayoutManager(this, 3);
+        GridLayoutManager mLayoutManager = new GridLayoutManager(this, 3);
         recyclerView.setLayoutManager(mLayoutManager);
     }
 

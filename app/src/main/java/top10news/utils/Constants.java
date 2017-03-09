@@ -1,4 +1,4 @@
-package com.example.nitheeshkpai.toptennews.utils;
+package top10news.utils;
 
 /**
  * Created by nitheeshkpai on 3/6/17.

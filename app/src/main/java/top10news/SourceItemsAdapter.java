@@ -1,4 +1,4 @@
-package com.example.nitheeshkpai.toptennews;
+package top10news;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -8,8 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.example.nitheeshkpai.toptennews.info.SourceItemInfo;
+import top10news.info.SourceItemInfo;
 import com.squareup.picasso.Picasso;
+import com.techietakalabs.android.top10news.R;
 
 import java.util.List;
 

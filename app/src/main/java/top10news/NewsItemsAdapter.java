@@ -1,4 +1,4 @@
-package com.example.nitheeshkpai.toptennews;
+package top10news;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,9 +11,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.nitheeshkpai.toptennews.info.NewsItemInfo;
-import com.example.nitheeshkpai.toptennews.utils.DatabaseHandler;
+import top10news.info.NewsItemInfo;
+import top10news.utils.DatabaseHandler;
 import com.squareup.picasso.Picasso;
+import com.techietakalabs.android.top10news.R;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

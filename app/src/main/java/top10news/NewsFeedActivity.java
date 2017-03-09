@@ -1,4 +1,4 @@
-package com.example.nitheeshkpai.toptennews;
+package top10news;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -16,8 +16,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -30,12 +28,13 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
-import com.example.nitheeshkpai.toptennews.info.NewsItemInfo;
-import com.example.nitheeshkpai.toptennews.utils.Constants;
+import top10news.info.NewsItemInfo;
+import top10news.utils.Constants;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
+import com.techietakalabs.android.top10news.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;

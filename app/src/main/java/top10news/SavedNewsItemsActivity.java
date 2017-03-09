@@ -1,4 +1,4 @@
-package com.example.nitheeshkpai.toptennews;
+package top10news;
 
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
@@ -12,8 +12,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.example.nitheeshkpai.toptennews.info.NewsItemInfo;
-import com.example.nitheeshkpai.toptennews.utils.DatabaseHandler;
+import com.techietakalabs.android.top10news.R;
+
+import top10news.info.NewsItemInfo;
+import top10news.utils.DatabaseHandler;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.example.nitheeshkpai.toptennews;
+package top10news.example.nitheeshkpai.toptennews;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

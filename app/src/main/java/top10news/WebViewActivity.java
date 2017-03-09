@@ -1,4 +1,4 @@
-package com.example.nitheeshkpai.toptennews;
+package top10news;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -15,7 +15,9 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import com.example.nitheeshkpai.toptennews.info.NewsItemInfo;
+import com.techietakalabs.android.top10news.R;
+
+import top10news.info.NewsItemInfo;
 
 import java.util.ArrayList;
 import java.util.List;

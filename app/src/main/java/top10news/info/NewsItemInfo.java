@@ -1,4 +1,4 @@
-package com.example.nitheeshkpai.toptennews.info;
+package top10news.info;
 
 import android.os.Parcel;
 import android.os.Parcelable;

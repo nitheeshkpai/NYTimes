@@ -1,4 +1,4 @@
-package com.example.nitheeshkpai.toptennews.info;
+package top10news.info;
 
 import com.google.gson.annotations.SerializedName;
 

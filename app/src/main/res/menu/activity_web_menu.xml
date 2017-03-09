@@ -3,12 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item android:id="@+id/open_external"
         android:icon="@drawable/ic_open_external"
-        app:showAsAction="always"
+        app:showAsAction="ifRoom"
         android:title="@string/open_external_browser"/>
 
     <item android:id="@+id/save"
         android:icon="@drawable/ic_saved_white"
-        app:showAsAction="always"
+        app:showAsAction="ifRoom"
 
         android:title="@string/save"/>
 

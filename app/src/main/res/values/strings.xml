@@ -7,7 +7,6 @@
 
     <string name="dialog_message_no_network">Something seems to be wrong with the network</string>
     <string name="no_network">Network error</string>
-    <string name="search_title">Search</string>
 
     <string name="default_date"> </string>
     <string name="saved_articles">Saved Articles</string>
@@ -32,7 +31,6 @@
     <string name="contact_text_header">Contact:</string>
     <string name="intro_text">Have you ever opened a newspaper and read that two column news on the fifth page?\nThe news you need is always there on the front page.\nTop10 News brings you the top ten news from News agencies of your choice from around the world.\nSave the ones you think require further reading. That\'s it.\nNo notifications. No beeps. No sign up.\nAnd No Ads.\nTop10 News is non-commercial and is sourced from newsapi.org</string>
     <string name="tips_text">Swipe left to save an article.\nSwipe right to delete a saved article.</string>
-    <string name="final_word">Dont waste your life scrolling, stay updated with the Top Ten News and take your eyes off your phone!</string>
     <string name="contact">Have a suggestion?\nDo you think we can improve?\nWrite to us at: nitheeshkpai@gmail.com</string>
     <string name="label_webview_activity">Full Story</string>
     <string name="label_savednews_activity">Saved Articles</string>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.nitheeshkpai.toptennews">
+    package="com.techietakalabs.android.top10news">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -13,7 +13,7 @@
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup">
         <activity
-            android:name=".NewsFeedActivity"
+            android:name="top10news.NewsFeedActivity"
             android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,22 +24,22 @@
         </activity>
 
         <activity
-            android:name=".WebViewActivity"
+            android:name="top10news.WebViewActivity"
             android:label="@string/label_webview_activity"
             android:launchMode="singleTop"/>
 
         <activity
-            android:name=".SavedNewsItemsActivity"
+            android:name="top10news.SavedNewsItemsActivity"
             android:label="@string/label_savednews_activity"
-            android:parentActivityName=".NewsFeedActivity"/>
+            android:parentActivityName="top10news.NewsFeedActivity"/>
 
-        <activity android:name=".SelectFilterActivity"
+        <activity android:name="top10news.SelectFilterActivity"
             android:label="@string/select_source"
-            android:parentActivityName=".NewsFeedActivity"/>
+            android:parentActivityName="top10news.NewsFeedActivity"/>
 
-        <activity android:name=".HelpActivity"
+        <activity android:name="top10news.HelpActivity"
             android:label="@string/help"
-            android:parentActivityName=".NewsFeedActivity"/>
+            android:parentActivityName="top10news.NewsFeedActivity"/>
 
     </application>
 

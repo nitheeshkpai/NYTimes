@@ -1,11 +1,10 @@
-package com.example.nitheeshkpai.toptennews;
+package top10news;
 
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
-import com.example.nitheeshkpai.toptennews.utils.DatabaseHandler;
+import com.techietakalabs.android.top10news.R;
 
 /**
  * Created by nitheeshkpai on 3/9/17.
