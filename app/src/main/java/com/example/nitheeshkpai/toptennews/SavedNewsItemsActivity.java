@@ -48,7 +48,8 @@ public class SavedNewsItemsActivity extends AppCompatActivity {
         if (newsItemsList.isEmpty()) {
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
             alertDialogBuilder.setMessage(this.getResources().getString(R.string.dialog_message_no_bookmarks))
-                    .setTitle(this.getResources().getString(R.string.no_bookmarks));
+                    .setTitle(this.getResources().getString(R.string.no_bookmarks))
+                    .setPositiveButton("OK", null);
             AlertDialog dialog = alertDialogBuilder.create();
             dialog.show();
         }
@@ -67,10 +68,11 @@ public class SavedNewsItemsActivity extends AppCompatActivity {
             public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
                 return false;
             }
+
             @Override
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {
                 switch (swipeDir) {
-                    case ItemTouchHelper.RIGHT :
+                    case ItemTouchHelper.RIGHT:
                         adapter.deleteNewsItem(newsItemsList.get(viewHolder.getAdapterPosition()));
                         adapter.notifyDataSetChanged();
                         Toast.makeText(SavedNewsItemsActivity.this, SavedNewsItemsActivity.this.getResources().getString(R.string.removed_bookmark), Toast.LENGTH_SHORT).show();

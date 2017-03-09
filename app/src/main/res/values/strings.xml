@@ -24,4 +24,5 @@
     <string name="swipe_left_to_bookmark">Swipe left to save article</string>
     <string name="swipe_right_to_delete">Swipe right to remove article</string>
     <string name="select_source">Select News Source</string>
+    <string name="open_external_browser">Open in External Browser</string>
 </resources>

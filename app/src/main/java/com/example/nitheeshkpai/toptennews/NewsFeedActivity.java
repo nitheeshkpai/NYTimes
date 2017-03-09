@@ -16,10 +16,14 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -133,6 +137,13 @@ public class NewsFeedActivity extends AppCompatActivity implements SwipeRefreshL
 
         sourceLogoImageView = (ImageView) findViewById(R.id.logo_image);
         Glide.with(this).load(sourceLogo).into(sourceLogoImageView);
+        sourceLogoImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(NewsFeedActivity.this, SelectFilterActivity.class);
+                startActivityForResult(intent, 1);
+            }
+        });
     }
 
     @Override
@@ -227,7 +238,6 @@ public class NewsFeedActivity extends AppCompatActivity implements SwipeRefreshL
         }
         adapter.notifyDataSetChanged();
     }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -237,6 +247,7 @@ public class NewsFeedActivity extends AppCompatActivity implements SwipeRefreshL
         }
         return true;
     }
+
 
     @Override
     public void onRefresh() {

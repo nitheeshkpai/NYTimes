@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v7.widget.RecyclerView;
+import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -128,21 +129,31 @@ public class NewsItemsAdapter extends RecyclerView.Adapter<NewsItemsAdapter.MyVi
     }
 
     private String formatDate(String dateString) {
-
         if (dateString == null) {
             return mContext.getResources().getString(R.string.default_date);
         }
-        SimpleDateFormat form = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+
+        SimpleDateFormat form = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.US);
         Date date = null;
+        CharSequence timePassedString = null;
+
         try {
             date = form.parse(dateString);
+            long epoch = date.getTime();
+            timePassedString = DateUtils.getRelativeTimeSpanString(epoch, System.currentTimeMillis(), DateUtils.HOUR_IN_MILLIS);
         } catch (ParseException e) {
-
             e.printStackTrace();
+            SimpleDateFormat recoveryForm = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+            try {
+                date = recoveryForm.parse(dateString);
+            } catch (ParseException e1) {
+                e1.printStackTrace();
+            }
+            SimpleDateFormat postFormatter = new SimpleDateFormat("dd MMM, yyyy", Locale.US);
+            return postFormatter.format(date);
         }
 
-        SimpleDateFormat postFormatter = new SimpleDateFormat("dd MMM, yyyy", Locale.US);
-        return postFormatter.format(date);
+        return timePassedString.toString();
     }
 
     @Override

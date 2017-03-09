@@ -28,4 +28,16 @@
         android:textColor="@color/colorPrimaryDark"
         android:textSize="@dimen/nav_title_size" />
 
+    <TextView
+        android:id="@+id/news_api_credit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/nav_title_margin"
+        android:paddingEnd="@dimen/nav_title_margin"
+        android:textColor="@color/colorPrimaryDark"
+        android:textColorLink="@color/colorPrimary"
+        android:autoLink="web"
+        android:linksClickable="true"
+        android:text="Powered by https://newsapi.org/"/>
+
 </LinearLayout>

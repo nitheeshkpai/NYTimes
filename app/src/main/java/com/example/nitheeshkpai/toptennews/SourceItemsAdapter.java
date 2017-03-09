@@ -33,7 +33,7 @@ public class SourceItemsAdapter extends RecyclerView.Adapter<SourceItemsAdapter.
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.currentItem = sourceItemsInfoList.get(position);
-        Picasso.with(mActivity.getApplicationContext()).load(holder.currentItem.urlContainer.getLogoImageUrl()).placeholder(new ColorDrawable(mActivity.getResources().getColor(R.color.colorAccent))).into(holder.logo);
+        Picasso.with(mActivity.getApplicationContext()).load(holder.currentItem.urlContainer.getLogoImageUrl()).placeholder(new ColorDrawable(mActivity.getResources().getColor(R.color.lightGrey))).into(holder.logo);
     }
 
     @Override
