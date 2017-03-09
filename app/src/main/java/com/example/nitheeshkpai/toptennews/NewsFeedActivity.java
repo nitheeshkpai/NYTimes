@@ -246,6 +246,11 @@ public class NewsFeedActivity extends AppCompatActivity implements SwipeRefreshL
             case R.id.saved_items:
                 Intent intent = new Intent(this, SavedNewsItemsActivity.class);
                 startActivity(intent);
+                break;
+            case R.id.help :
+                Intent intentHelp = new Intent(this, HelpActivity.class);
+                startActivity(intentHelp);
+                break;
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

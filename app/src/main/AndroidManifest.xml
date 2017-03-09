@@ -37,6 +37,10 @@
             android:label="@string/select_source"
             android:parentActivityName=".NewsFeedActivity"/>
 
+        <activity android:name=".HelpActivity"
+            android:label="@string/help"
+            android:parentActivityName=".NewsFeedActivity"/>
+
     </application>
 
 </manifest>

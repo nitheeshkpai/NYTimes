@@ -16,4 +16,8 @@
     <dimen name="card_elevation">24dp</dimen>
     <dimen name="toolbar_title">22sp</dimen>
     <dimen name="logo_toolbar_side">56dp</dimen>
+    <dimen name="tips_font_size">18sp</dimen>
+    <dimen name="text_font_size">20sp</dimen>
+    <dimen name="intro_font_size">16sp</dimen>
+    <dimen name="header_font_size">24sp</dimen>
 </resources>

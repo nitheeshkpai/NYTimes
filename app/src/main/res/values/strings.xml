@@ -26,4 +26,12 @@
     <string name="open_external_browser">Open in External Browser</string>
     <string name="logo">Source Logo</string>
     <string name="credits_string">Powered by https://newsapi.org/</string>
+    <string name="help">Help</string>
+    <string name="intro_text_header">Hey!</string>
+    <string name="tips_text_header">Tips:</string>
+    <string name="contact_text_header">Contact:</string>
+    <string name="intro_text">I believe that the News you really need to know will always be present in the Top Ten of the your favourite News Agency. This app is built on that idea, rather than having hundreds of articles and killing your time by getting you engaged in the app. This is a non-commercial News App with the objective of saving your time with data sourced from "newsapi.org". </string>
+    <string name="tips_text">Swipe left on articles to save for later \nSwipe right on saved articles to delete</string>
+    <string name="final_word">Dont waste your life scrolling, stay updated with the Top Ten News and take your eyes off your phone!</string>
+    <string name="contact">Reach out to me on the Playstore with feedback and suggestions</string>
 </resources>
